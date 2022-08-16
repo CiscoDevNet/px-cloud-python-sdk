@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: cxpp-outbound-python-sdk
+Version: 0.0.1
+Summary: CX Partner Portal APIs
+Home-page: https://github.com/CXEPI/px-cloud-python-sdk
+Author: API Support
+Author-email: partner-support@cisco.com
+License: Apache 2.0
+License-File: LICENSE
