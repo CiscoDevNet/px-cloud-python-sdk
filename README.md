@@ -156,7 +156,7 @@ Class | Method | HTTP request | Description
 
 ## Author
 
-partner-support@cisco.com
+developer-support-pxcloud@cisco.com
 
 
 ## Notes for Large OpenAPI documents
