@@ -1,4 +1,4 @@
-CX Partner Portal APIs for the Partners - LA Release
+CX Partner Portal APIs for the Partners
 
 For more information, please visit [https://cisco.com](https://cisco.com)
 
