@@ -31,7 +31,7 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.asset import Asset
+    from px_osv_v1_python_sdk.model.asset import Asset
     globals()['Asset'] = Asset
 
 

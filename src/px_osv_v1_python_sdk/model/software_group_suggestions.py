@@ -31,9 +31,9 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.release_summary import ReleaseSummary
-    from openapi_client.model.software_group_risk import SoftwareGroupRisk
-    from openapi_client.model.suggestion_summary import SuggestionSummary
+    from px_osv_v1_python_sdk.model.release_summary import ReleaseSummary
+    from px_osv_v1_python_sdk.model.software_group_risk import SoftwareGroupRisk
+    from px_osv_v1_python_sdk.model.suggestion_summary import SuggestionSummary
     globals()['ReleaseSummary'] = ReleaseSummary
     globals()['SoftwareGroupRisk'] = SoftwareGroupRisk
     globals()['SuggestionSummary'] = SuggestionSummary

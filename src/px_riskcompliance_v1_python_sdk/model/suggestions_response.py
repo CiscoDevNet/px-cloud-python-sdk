@@ -31,7 +31,7 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.suggestion import Suggestion
+    from px_riskcompliance_v1_python_sdk.model.suggestion import Suggestion
     globals()['Suggestion'] = Suggestion
 
 
