@@ -43,7 +43,9 @@ class FaultsApi(object):
         self.get_affected_assets_details_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (AssetsFaultHistoryResponse,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/faults/{faultId}/affectedAssets/{assetName}/faultHistory',
                 'operation_id': 'get_affected_assets_details_using_get',
                 'http_method': 'GET',
@@ -121,7 +123,9 @@ class FaultsApi(object):
         self.get_affected_assets_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (AffectedAssetsResponse,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/faults/{faultId}/affectedAssets',
                 'operation_id': 'get_affected_assets_using_get',
                 'http_method': 'GET',
@@ -208,7 +212,9 @@ class FaultsApi(object):
         self.get_faults_summary_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (FaultsSummaryResponse,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/faults/{faultId}/summary',
                 'operation_id': 'get_faults_summary_using_get',
                 'http_method': 'GET',
@@ -269,7 +275,9 @@ class FaultsApi(object):
         self.get_faults_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (FaultsResponse,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/faults',
                 'operation_id': 'get_faults_using_get',
                 'http_method': 'GET',

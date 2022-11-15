@@ -42,7 +42,9 @@ class InsightsApi(object):
         self.get_software_group_assets_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (AssetResponse,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/software/softwareGroups/{softwareGroupId}/assets',
                 'operation_id': 'get_software_group_assets_using_get',
                 'http_method': 'GET',
@@ -113,7 +115,9 @@ class InsightsApi(object):
         self.get_software_group_suggestions_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (SoftwareGroupSuggestions,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/software/softwareGroups/{softwareGroupName}/suggestions',
                 'operation_id': 'get_software_group_suggestions_using_get',
                 'http_method': 'GET',
@@ -186,7 +190,9 @@ class InsightsApi(object):
         self.get_software_groups_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (SoftwareGroupResponse,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/software/softwareGroups',
                 'operation_id': 'get_software_groups_using_get',
                 'http_method': 'GET',
