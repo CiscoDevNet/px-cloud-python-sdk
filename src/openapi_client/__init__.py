@@ -1,5 +1,5 @@
-import api_client
-import configuration
-import exceptions
-import model_utils
-import rest
+from openapi_client.api_client import *
+from openapi_client.configuration import *
+from openapi_client.exceptions import *
+from openapi_client.model_utils import *
+from openapi_client.rest  import *
