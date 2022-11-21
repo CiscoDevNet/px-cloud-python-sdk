@@ -39,13 +39,14 @@ class InsightsApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+
         self.get_software_group_assets_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (AssetResponse,),
                 'auth': [
                     'oAuth2'
                 ],
-                'endpoint_path': '/v1/customers/{customerId}/insights/software/softwareGroups/{softwareGroupId}/assets',
+                'endpoint_path': '/v1/customers/{customerId}/insights/software/softwareGroups/assets',
                 'operation_id': 'get_software_group_assets_using_get',
                 'http_method': 'GET',
                 'servers': None,
@@ -97,7 +98,7 @@ class InsightsApi(object):
                 'location_map': {
                     'success_track_id': 'query',
                     'customer_id': 'path',
-                    'software_group_id': 'path',
+                    'software_group_id': 'query',
                     'offset': 'query',
                     'max': 'query',
                 },
@@ -112,13 +113,15 @@ class InsightsApi(object):
             },
             api_client=api_client
         )
+
+
         self.get_software_group_suggestions_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (SoftwareGroupSuggestions,),
                 'auth': [
                     'oAuth2'
                 ],
-                'endpoint_path': '/v1/customers/{customerId}/insights/software/softwareGroups/{softwareGroupName}/suggestions',
+                'endpoint_path': '/v1/customers/{customerId}/insights/software/softwareGroups/suggestions',
                 'operation_id': 'get_software_group_suggestions_using_get',
                 'http_method': 'GET',
                 'servers': None,
@@ -127,16 +130,12 @@ class InsightsApi(object):
                 'all': [
                     'success_track_id',
                     'customer_id',
-                    'software_group_name',
-                    'source_system_id',
-                    'software_type',
+                    'suggestion_id',
                 ],
                 'required': [
                     'success_track_id',
                     'customer_id',
-                    'software_group_name',
-                    'source_system_id',
-                    'software_type',
+                    'suggestion_id',
                 ],
                 'nullable': [
                 ],
@@ -155,26 +154,18 @@ class InsightsApi(object):
                         (str,),
                     'customer_id':
                         (str,),
-                    'software_group_name':
-                        (str,),
-                    'source_system_id':
-                        (str,),
-                    'software_type':
+                    'suggestion_id':
                         (str,),
                 },
                 'attribute_map': {
                     'success_track_id': 'successTrackId',
                     'customer_id': 'customerId',
-                    'software_group_name': 'softwareGroupName',
-                    'source_system_id': 'sourceSystemId',
-                    'software_type': 'softwareType',
+                    'suggestion_id': 'suggestionId',
                 },
                 'location_map': {
                     'success_track_id': 'query',
                     'customer_id': 'path',
-                    'software_group_name': 'path',
-                    'source_system_id': 'query',
-                    'software_type': 'query',
+                    'suggestion_id': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -187,6 +178,8 @@ class InsightsApi(object):
             },
             api_client=api_client
         )
+
+
         self.get_software_groups_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (SoftwareGroupResponse,),
@@ -254,6 +247,7 @@ class InsightsApi(object):
             },
             api_client=api_client
         )
+
 
     def get_software_group_assets_using_get(
         self,
@@ -348,13 +342,12 @@ class InsightsApi(object):
             software_group_id
         return self.get_software_group_assets_using_get_endpoint.call_with_http_info(**kwargs)
 
+
     def get_software_group_suggestions_using_get(
         self,
         success_track_id,
         customer_id,
-        software_group_name,
-        source_system_id,
-        software_type,
+        suggestion_id,
         **kwargs
     ):
         """Software Group suggestions  # noqa: E501
@@ -363,15 +356,13 @@ class InsightsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_software_group_suggestions_using_get(success_track_id, customer_id, software_group_name, source_system_id, software_type, async_req=True)
+        >>> thread = api.get_software_group_suggestions_using_get(success_track_id, customer_id, suggestion_id, async_req=True)
         >>> result = thread.get()
 
         Args:
             success_track_id (str):
             customer_id (str): Unique identifier of the customer
-            software_group_name (str): Name of the Software Group, which is based on the Cisco product ID of the assets in the Software Group
-            source_system_id (str): UUID of the Cisco network management system that manages the assets in the Software Group
-            software_type (str): Cisco software type running on the assets in the Software Group
+            suggestion_id (str): 
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -439,13 +430,10 @@ class InsightsApi(object):
             success_track_id
         kwargs['customer_id'] = \
             customer_id
-        kwargs['software_group_name'] = \
-            software_group_name
-        kwargs['source_system_id'] = \
-            source_system_id
-        kwargs['software_type'] = \
-            software_type
+        kwargs['suggestion_id'] = \
+            suggestion_id
         return self.get_software_group_suggestions_using_get_endpoint.call_with_http_info(**kwargs)
+
 
     def get_software_groups_using_get(
         self,

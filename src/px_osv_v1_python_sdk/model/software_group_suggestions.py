@@ -96,9 +96,9 @@ class SoftwareGroupSuggestions(ModelNormal):
             'basic_suggested_date': (date,),  # noqa: E501
             'software_group_name': (str,),  # noqa: E501
             'suggestion_updated_date': (date,),  # noqa: E501
-            'suggestions_interval': (int,),  # noqa: E501
+            'suggestions_interval': (str,),  # noqa: E501
             'selected_release': (str,),  # noqa: E501
-            'suggestion_selected_date': (date,),  # noqa: E501
+            'suggestion_selected_date': (date, str),  # noqa: E501
             'software_group_risk_trend': ([SoftwareGroupRisk],),  # noqa: E501
             'suggestion_summaries': ([SuggestionSummary],),  # noqa: E501
             'release_summary': ([ReleaseSummary],),  # noqa: E501
@@ -167,7 +167,7 @@ class SoftwareGroupSuggestions(ModelNormal):
             basic_suggested_date (date): Date the basic suggestions were updated for the Software Group. [optional]  # noqa: E501
             software_group_name (str): Name of the Software Group whose data is being retrieved. [optional]  # noqa: E501
             suggestion_updated_date (date): Date the machine learning suggestions were updated for the Software Group. [optional]  # noqa: E501
-            suggestions_interval (int): How often, in months, Cisco software release suggestions will be provided. The customer can configure this value in CX Cloud.. [optional]  # noqa: E501
+            suggestions_interval (str): How often, in months, Cisco software release suggestions will be provided. The customer can configure this value in CX Cloud.. [optional]  # noqa: E501
             selected_release (str): The suggested Cisco software release the customer has selected to use the next time a software update is performed on the assets in the Software Group. [optional]  # noqa: E501
             suggestion_selected_date (date): Date the customer selected a suggested Cisco software release in CX Cloud. [optional]  # noqa: E501
             software_group_risk_trend ([SoftwareGroupRisk]): List of weekly risk scores for the current Cisco software releases calculated over a period of time. [optional]  # noqa: E501
@@ -262,7 +262,7 @@ class SoftwareGroupSuggestions(ModelNormal):
             basic_suggested_date (date): Date the basic suggestions were updated for the Software Group. [optional]  # noqa: E501
             software_group_name (str): Name of the Software Group whose data is being retrieved. [optional]  # noqa: E501
             suggestion_updated_date (date): Date the machine learning suggestions were updated for the Software Group. [optional]  # noqa: E501
-            suggestions_interval (int): How often, in months, Cisco software release suggestions will be provided. The customer can configure this value in CX Cloud.. [optional]  # noqa: E501
+            suggestions_interval (str): How often, in months, Cisco software release suggestions will be provided. The customer can configure this value in CX Cloud.. [optional]  # noqa: E501
             selected_release (str): The suggested Cisco software release the customer has selected to use the next time a software update is performed on the assets in the Software Group. [optional]  # noqa: E501
             suggestion_selected_date (date): Date the customer selected a suggested Cisco software release in CX Cloud. [optional]  # noqa: E501
             software_group_risk_trend ([SoftwareGroupRisk]): List of weekly risk scores for the current Cisco software releases calculated over a period of time. [optional]  # noqa: E501
