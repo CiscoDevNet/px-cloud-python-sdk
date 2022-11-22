@@ -46,7 +46,9 @@ class ComplianceApi(object):
         self.get_asset_violation_details_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (AssetsViolationsResponse,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/compliance/violations/assets',
                 'operation_id': 'get_asset_violation_details_using_get',
                 'http_method': 'GET',
@@ -141,7 +143,9 @@ class ComplianceApi(object):
         self.get_asset_violations_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (AssetViolationsResponse,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/compliance/assetViolations',
                 'operation_id': 'get_asset_violations_using_get',
                 'http_method': 'GET',
@@ -218,7 +222,9 @@ class ComplianceApi(object):
         self.get_asset_with_violations_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (AssetsWithViolationsResponse,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/compliance/assetsWithViolations',
                 'operation_id': 'get_asset_with_violations_using_get',
                 'http_method': 'GET',
@@ -283,7 +289,9 @@ class ComplianceApi(object):
         self.get_opt_in_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (OptInResponse,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/compliance/optIn',
                 'operation_id': 'get_opt_in_using_get',
                 'http_method': 'GET',
@@ -338,7 +346,9 @@ class ComplianceApi(object):
         self.get_policy_rule_details_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (PolicyRuleDetails,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/compliance/policyRuleDetails',
                 'operation_id': 'get_policy_rule_details_using_get',
                 'http_method': 'GET',
@@ -423,7 +433,9 @@ class ComplianceApi(object):
         self.get_suggestions_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (SuggestionsResponse,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/compliance/suggestions',
                 'operation_id': 'get_suggestions_using_get',
                 'http_method': 'GET',
@@ -512,7 +524,9 @@ class ComplianceApi(object):
         self.get_violation_summary_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (ViolationSummaryResponse,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/compliance/violations',
                 'operation_id': 'get_violation_summary_using_get',
                 'http_method': 'GET',

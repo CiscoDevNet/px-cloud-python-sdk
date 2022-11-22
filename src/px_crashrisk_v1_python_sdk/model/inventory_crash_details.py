@@ -31,7 +31,7 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.device_detail import DeviceDetail
+    from px_crashrisk_v1_python_sdk.model.device_detail import DeviceDetail
     globals()['DeviceDetail'] = DeviceDetail
 
 

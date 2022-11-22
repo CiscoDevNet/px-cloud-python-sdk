@@ -4,8 +4,8 @@ All URIs are relative to *https://api.pxcloud-stg.cisco.com/torii*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_software_group_assets_using_get**](InsightsApi.md#get_software_group_assets_using_get) | **GET** /v1/customers/{customerId}/insights/software/softwareGroups/{softwareGroupId}/assets | Asset information in the Software Group
-[**get_software_group_suggestions_using_get**](InsightsApi.md#get_software_group_suggestions_using_get) | **GET** /v1/customers/{customerId}/insights/software/softwareGroups/{softwareGroupName}/suggestions | Software Group suggestions
+[**get_software_group_assets_using_get**](InsightsApi.md#get_software_group_assets_using_get) | **GET** /v1/customers/{customerId}/insights/software/softwareGroups/assets | Asset information in the Software Group
+[**get_software_group_suggestions_using_get**](InsightsApi.md#get_software_group_suggestions_using_get) | **GET** /v1/customers/{customerId}/insights/software/softwareGroups/suggestions | Software Group suggestions
 [**get_software_groups_using_get**](InsightsApi.md#get_software_groups_using_get) | **GET** /v1/customers/{customerId}/insights/software/softwareGroups | Software Group information
 
 

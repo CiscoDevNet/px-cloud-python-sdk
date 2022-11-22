@@ -31,7 +31,7 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.software_group import SoftwareGroup
+    from px_osv_v1_python_sdk.model.software_group import SoftwareGroup
     globals()['SoftwareGroup'] = SoftwareGroup
 
 

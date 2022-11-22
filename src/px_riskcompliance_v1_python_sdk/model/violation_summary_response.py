@@ -31,7 +31,7 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.violation_summary import ViolationSummary
+    from px_riskcompliance_v1_python_sdk.model.violation_summary import ViolationSummary
     globals()['ViolationSummary'] = ViolationSummary
 
 

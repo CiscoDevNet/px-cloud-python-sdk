@@ -31,7 +31,7 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.crash import Crash
+    from px_crashrisk_v1_python_sdk.model.crash import Crash
     globals()['Crash'] = Crash
 
 

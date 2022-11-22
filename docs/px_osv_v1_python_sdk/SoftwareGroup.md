@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset_count** | **int** | Number of assets in the Software Group | [optional] 
+**asset_count** | **str** | Number of assets in the Software Group | [optional] 
 **source_id** | **str** | IP address of the Cisco network management system that manages the assets in the Software Group | [optional] 
 **source_system_id** | **str** | Unique identifier of the Cisco network management system that manages the assets in the Software Group | [optional] 
 **selected_release** | **str** | The suggested Cisco software release the customer selected to use for the next software update on the assets in the Software Group | [optional] 

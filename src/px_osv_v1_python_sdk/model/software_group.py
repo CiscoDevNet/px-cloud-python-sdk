@@ -82,7 +82,7 @@ class SoftwareGroup(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'asset_count': (int,),  # noqa: E501
+            'asset_count': (str,),  # noqa: E501
             'source_id': (str,),  # noqa: E501
             'source_system_id': (str,),  # noqa: E501
             'selected_release': (str,),  # noqa: E501
@@ -155,7 +155,7 @@ class SoftwareGroup(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            asset_count (int): Number of assets in the Software Group. [optional]  # noqa: E501
+            asset_count (str): Number of assets in the Software Group. [optional]  # noqa: E501
             source_id (str): IP address of the Cisco network management system that manages the assets in the Software Group. [optional]  # noqa: E501
             source_system_id (str): Unique identifier of the Cisco network management system that manages the assets in the Software Group. [optional]  # noqa: E501
             selected_release (str): The suggested Cisco software release the customer selected to use for the next software update on the assets in the Software Group. [optional]  # noqa: E501
@@ -251,7 +251,7 @@ class SoftwareGroup(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            asset_count (int): Number of assets in the Software Group. [optional]  # noqa: E501
+            asset_count (str): Number of assets in the Software Group. [optional]  # noqa: E501
             source_id (str): IP address of the Cisco network management system that manages the assets in the Software Group. [optional]  # noqa: E501
             source_system_id (str): Unique identifier of the Cisco network management system that manages the assets in the Software Group. [optional]  # noqa: E501
             selected_release (str): The suggested Cisco software release the customer selected to use for the next software update on the assets in the Software Group. [optional]  # noqa: E501

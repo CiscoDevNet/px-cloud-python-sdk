@@ -31,9 +31,9 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.suggestion_summary_advisories_severity_inner import SuggestionSummaryAdvisoriesSeverityInner
-    from openapi_client.model.suggestion_summary_bug_severity_inner import SuggestionSummaryBugSeverityInner
-    from openapi_client.model.suggestion_summary_field_notice_severity_inner import SuggestionSummaryFieldNoticeSeverityInner
+    from px_osv_v1_python_sdk.model.suggestion_summary_advisories_severity_inner import SuggestionSummaryAdvisoriesSeverityInner
+    from px_osv_v1_python_sdk.model.suggestion_summary_bug_severity_inner import SuggestionSummaryBugSeverityInner
+    from px_osv_v1_python_sdk.model.suggestion_summary_field_notice_severity_inner import SuggestionSummaryFieldNoticeSeverityInner
     globals()['SuggestionSummaryAdvisoriesSeverityInner'] = SuggestionSummaryAdvisoriesSeverityInner
     globals()['SuggestionSummaryBugSeverityInner'] = SuggestionSummaryBugSeverityInner
     globals()['SuggestionSummaryFieldNoticeSeverityInner'] = SuggestionSummaryFieldNoticeSeverityInner
@@ -92,7 +92,7 @@ class SuggestionSummary(ModelNormal):
         """
         lazy_import()
         return {
-            'expected_software_group_risk': (float,),  # noqa: E501
+            'expected_software_group_risk': (str,),  # noqa: E501
             'expected_software_group_risk_category': (str,),  # noqa: E501
             'suggestion_id': (float,),  # noqa: E501
             'name': (str,),  # noqa: E501
@@ -163,7 +163,7 @@ class SuggestionSummary(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            expected_software_group_risk (float): Current risk score of the Cisco software release, which is the level of exposure the software release has to bugs, security advisories, and field notices. The risk score is used to make software suggestions intended to minimize risk for assets in the Software Group.. [optional]  # noqa: E501
+            expected_software_group_risk (str): Current risk score of the Cisco software release, which is the level of exposure the software release has to bugs, security advisories, and field notices. The risk score is used to make software suggestions intended to minimize risk for assets in the Software Group.. [optional]  # noqa: E501
             expected_software_group_risk_category (str): Risk level of the Cisco software release based on its risk score. The risk level can be High, Medium, or Low.. [optional]  # noqa: E501
             suggestion_id (float): Unique identifier of the suggestion. [optional]  # noqa: E501
             name (str): Value that indicates whether the Cisco software release is a current release or one of the suggested release options. [optional]  # noqa: E501
@@ -258,7 +258,7 @@ class SuggestionSummary(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            expected_software_group_risk (float): Current risk score of the Cisco software release, which is the level of exposure the software release has to bugs, security advisories, and field notices. The risk score is used to make software suggestions intended to minimize risk for assets in the Software Group.. [optional]  # noqa: E501
+            expected_software_group_risk (str): Current risk score of the Cisco software release, which is the level of exposure the software release has to bugs, security advisories, and field notices. The risk score is used to make software suggestions intended to minimize risk for assets in the Software Group.. [optional]  # noqa: E501
             expected_software_group_risk_category (str): Risk level of the Cisco software release based on its risk score. The risk level can be High, Medium, or Low.. [optional]  # noqa: E501
             suggestion_id (float): Unique identifier of the suggestion. [optional]  # noqa: E501
             name (str): Value that indicates whether the Cisco software release is a current release or one of the suggested release options. [optional]  # noqa: E501

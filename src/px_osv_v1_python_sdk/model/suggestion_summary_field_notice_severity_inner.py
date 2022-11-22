@@ -31,9 +31,9 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.suggestion_summary_field_notice_severity_inner_new_open import SuggestionSummaryFieldNoticeSeverityInnerNewOpen
-    from openapi_client.model.suggestion_summary_field_notice_severity_inner_open import SuggestionSummaryFieldNoticeSeverityInnerOpen
-    from openapi_client.model.suggestion_summary_field_notice_severity_inner_resolved import SuggestionSummaryFieldNoticeSeverityInnerResolved
+    from px_osv_v1_python_sdk.model.suggestion_summary_field_notice_severity_inner_new_open import SuggestionSummaryFieldNoticeSeverityInnerNewOpen
+    from px_osv_v1_python_sdk.model.suggestion_summary_field_notice_severity_inner_open import SuggestionSummaryFieldNoticeSeverityInnerOpen
+    from px_osv_v1_python_sdk.model.suggestion_summary_field_notice_severity_inner_resolved import SuggestionSummaryFieldNoticeSeverityInnerResolved
     globals()['SuggestionSummaryFieldNoticeSeverityInnerNewOpen'] = SuggestionSummaryFieldNoticeSeverityInnerNewOpen
     globals()['SuggestionSummaryFieldNoticeSeverityInnerOpen'] = SuggestionSummaryFieldNoticeSeverityInnerOpen
     globals()['SuggestionSummaryFieldNoticeSeverityInnerResolved'] = SuggestionSummaryFieldNoticeSeverityInnerResolved
