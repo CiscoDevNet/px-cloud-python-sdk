@@ -31,7 +31,7 @@ from openapi_client.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from openapi_client.model.assets_fault_history import AssetsFaultHistory
+    from px_faults_v1_python_sdk.model.assets_fault_history import AssetsFaultHistory
     globals()['AssetsFaultHistory'] = AssetsFaultHistory
 
 

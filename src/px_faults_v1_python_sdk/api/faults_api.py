@@ -43,8 +43,11 @@ class FaultsApi(object):
         self.get_affected_assets_details_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (AssetsFaultHistoryResponse,),
-                'auth': [],
-                'endpoint_path': '/v1/customers/{customerId}/insights/faults/{faultId}/affectedAssets/{assetName}/faultHistory',
+                'auth': [
+                    'oAuth2'
+                ],
+                
+                'endpoint_path': '/v1/customers/{customerId}/insights/faults/{faultId}/affectedAssets',
                 'operation_id': 'get_affected_assets_details_using_get',
                 'http_method': 'GET',
                 'servers': None,
@@ -54,14 +57,12 @@ class FaultsApi(object):
                     'success_track_id',
                     'customer_id',
                     'fault_id',
-                    'asset_name',
                     'days',
                 ],
                 'required': [
                     'success_track_id',
                     'customer_id',
                     'fault_id',
-                    'asset_name',
                 ],
                 'nullable': [
                 ],
@@ -88,8 +89,6 @@ class FaultsApi(object):
                         (str,),
                     'fault_id':
                         (int,),
-                    'asset_name':
-                        (str,),
                     'days':
                         (int,),
                 },
@@ -97,14 +96,12 @@ class FaultsApi(object):
                     'success_track_id': 'successTrackId',
                     'customer_id': 'customerId',
                     'fault_id': 'faultId',
-                    'asset_name': 'assetName',
                     'days': 'days',
                 },
                 'location_map': {
                     'success_track_id': 'query',
                     'customer_id': 'path',
                     'fault_id': 'path',
-                    'asset_name': 'path',
                     'days': 'query',
                 },
                 'collection_format_map': {
@@ -121,7 +118,9 @@ class FaultsApi(object):
         self.get_affected_assets_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (AffectedAssetsResponse,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/faults/{faultId}/affectedAssets',
                 'operation_id': 'get_affected_assets_using_get',
                 'http_method': 'GET',
@@ -208,7 +207,9 @@ class FaultsApi(object):
         self.get_faults_summary_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (FaultsSummaryResponse,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/faults/{faultId}/summary',
                 'operation_id': 'get_faults_summary_using_get',
                 'http_method': 'GET',
@@ -269,7 +270,9 @@ class FaultsApi(object):
         self.get_faults_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (FaultsResponse,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/faults',
                 'operation_id': 'get_faults_using_get',
                 'http_method': 'GET',
@@ -353,7 +356,7 @@ class FaultsApi(object):
         success_track_id,
         customer_id,
         fault_id,
-        asset_name,
+        #asset_name,
         **kwargs
     ):
         """Assets Fault History  # noqa: E501
@@ -369,7 +372,6 @@ class FaultsApi(object):
             success_track_id (str):
             customer_id (str): Unique identifier of the customer
             fault_id (int): Unique identifier used in CX Cloud to identify the fault
-            asset_name (str): Unique asset name
 
         Keyword Args:
             days (int): The number of days to retrieve fault data for. This value can be 1, 7, 15, 30. The default is 1.. [optional] if omitted the server will use the default value of 1
@@ -440,8 +442,8 @@ class FaultsApi(object):
             customer_id
         kwargs['fault_id'] = \
             fault_id
-        kwargs['asset_name'] = \
-            asset_name
+        # kwargs['asset_name'] = \
+        #     asset_name
         return self.get_affected_assets_details_using_get_endpoint.call_with_http_info(**kwargs)
 
     def get_affected_assets_using_get(

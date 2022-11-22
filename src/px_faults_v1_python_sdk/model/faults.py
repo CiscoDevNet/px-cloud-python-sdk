@@ -58,7 +58,7 @@ class Faults(ModelNormal):
     allowed_values = {
         ('case_automation',): {
             'ENABLED': "enabled",
-            'DISABLED': "disabled",
+            'DISABLED': "Disabled",
         },
     }
 
@@ -94,7 +94,7 @@ class Faults(ModelNormal):
             'fault_id': (int,),  # noqa: E501
             'category': (str,),  # noqa: E501
             'open_cases': (int,),  # noqa: E501
-            'affected_assets': (str,),  # noqa: E501
+            'affected_assets': (int,),  # noqa: E501
             'occurences': (int,),  # noqa: E501
             'ignored_assets': (int,),  # noqa: E501
         }

@@ -44,7 +44,9 @@ class CrashRiskApi(object):
         self.asset_risk_factors_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (DeviceRiskFactors,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/crashRisk/assets/{assetIdBase64}/riskFactors',
                 'operation_id': 'asset_risk_factors_using_get',
                 'http_method': 'GET',
@@ -105,7 +107,9 @@ class CrashRiskApi(object):
         self.assets_crashed_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (InventoryCrashDetails,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/crashRisk/assetsCrashed',
                 'operation_id': 'assets_crashed_using_get',
                 'http_method': 'GET',
@@ -165,7 +169,9 @@ class CrashRiskApi(object):
         self.crash_history_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (DeviceCrashDetail,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/crashRisk/asset/{assetIdBase64}/crashHistory',
                 'operation_id': 'crash_history_using_get',
                 'http_method': 'GET',
@@ -226,7 +232,9 @@ class CrashRiskApi(object):
         self.crash_risk_assets_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (CrashRiskDevices,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/crashRisk/assets',
                 'operation_id': 'crash_risk_assets_using_get',
                 'http_method': 'GET',
@@ -291,7 +299,9 @@ class CrashRiskApi(object):
         self.similar_assets_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (SimilarDevices,),
-                'auth': [],
+                'auth': [
+                    'oAuth2'
+                ],
                 'endpoint_path': '/v1/customers/{customerId}/insights/crashRisk/assets/{assetIdBase64}/similarAssets',
                 'operation_id': 'similar_assets_using_get',
                 'http_method': 'GET',

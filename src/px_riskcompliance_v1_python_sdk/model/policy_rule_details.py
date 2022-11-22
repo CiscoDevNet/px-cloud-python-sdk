@@ -82,10 +82,10 @@ class PolicyRuleDetails(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'policy_name': (str,),  # noqa: E501
-            'policy_description': (str,),  # noqa: E501
-            'policy_id': (str,),  # noqa: E501
-            'rule_id': (str,),  # noqa: E501
+            'policy_name': (none_type,),  # noqa: E501
+            'policy_description': (none_type,),  # noqa: E501
+            'policy_id': (none_type,),  # noqa: E501
+            'rule_id': (none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -141,10 +141,10 @@ class PolicyRuleDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            policy_name (str): [optional]  # noqa: E501
-            policy_description (str): [optional]  # noqa: E501
-            policy_id (str): [optional]  # noqa: E501
-            rule_id (str): [optional]  # noqa: E501
+            policy_name (none_type): [optional]  # noqa: E501
+            policy_description (none_type): [optional]  # noqa: E501
+            policy_id (none_type): [optional]  # noqa: E501
+            rule_id (none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -230,10 +230,10 @@ class PolicyRuleDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            policy_name (str): [optional]  # noqa: E501
-            policy_description (str): [optional]  # noqa: E501
-            policy_id (str): [optional]  # noqa: E501
-            rule_id (str): [optional]  # noqa: E501
+            policy_name (none_type): [optional]  # noqa: E501
+            policy_description (none_type): [optional]  # noqa: E501
+            policy_id (none_type): [optional]  # noqa: E501
+            rule_id (none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
