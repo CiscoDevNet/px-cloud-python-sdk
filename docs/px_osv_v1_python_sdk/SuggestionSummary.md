@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**expected_software_group_risk** | **float** | Current risk score of the Cisco software release, which is the level of exposure the software release has to bugs, security advisories, and field notices. The risk score is used to make software suggestions intended to minimize risk for assets in the Software Group. | [optional] 
+**expected_software_group_risk** | **str** | Current risk score of the Cisco software release, which is the level of exposure the software release has to bugs, security advisories, and field notices. The risk score is used to make software suggestions intended to minimize risk for assets in the Software Group. | [optional] 
 **expected_software_group_risk_category** | **str** | Risk level of the Cisco software release based on its risk score. The risk level can be High, Medium, or Low. | [optional] 
 **suggestion_id** | **float** | Unique identifier of the suggestion | [optional] 
 **name** | **str** | Value that indicates whether the Cisco software release is a current release or one of the suggested release options | [optional] 
