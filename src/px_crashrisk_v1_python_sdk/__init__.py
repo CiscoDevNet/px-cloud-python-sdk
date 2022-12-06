@@ -26,3 +26,7 @@ from openapi_client.exceptions import ApiTypeError
 from openapi_client.exceptions import ApiValueError
 from openapi_client.exceptions import ApiKeyError
 from openapi_client.exceptions import ApiException
+
+from openapi_client.model_utils import *
+
+from px_crashrisk_v1_python_sdk.api.crash_risk_api import CrashRiskApi
