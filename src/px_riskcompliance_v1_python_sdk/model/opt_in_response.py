@@ -83,7 +83,7 @@ class OptInResponse(ModelNormal):
         """
         return {
             'status': (str,),  # noqa: E501
-            'has_qualified_assets': (str,),  # noqa: E501
+            'has_qualified_assets': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -138,7 +138,7 @@ class OptInResponse(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             status (str): [optional]  # noqa: E501
-            has_qualified_assets (str): [optional]  # noqa: E501
+            has_qualified_assets (bool): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -225,7 +225,7 @@ class OptInResponse(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             status (str): [optional]  # noqa: E501
-            has_qualified_assets (str): [optional]  # noqa: E501
+            has_qualified_assets (bool): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

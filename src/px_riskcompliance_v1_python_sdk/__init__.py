@@ -28,3 +28,5 @@ from openapi_client.exceptions import ApiKeyError
 from openapi_client.exceptions import ApiException
 
 from openapi_client.model_utils import *
+
+from px_riskcompliance_v1_python_sdk.api.compliance_api import ComplianceApi

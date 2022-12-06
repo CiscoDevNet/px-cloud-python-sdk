@@ -1,12 +1,13 @@
 from pprint import pprint
-import openapi_client
-import px_v1_python_sdk.api.partner_data_api as sdk
+from px_v1_python_sdk import (
+    ApiClient, Configuration, PartnerDataApi, model_to_dict
+)
 
-configuration = openapi_client.Configuration(
+configuration = Configuration(
     # host = 'ENTER_HOST_HERE'
 )
 configuration.access_token = 'ENTER_ACCESS_TOKEN_HERE'
-api_instance = sdk.PartnerDataApi(openapi_client.ApiClient(configuration))
+api_instance = PartnerDataApi(ApiClient(configuration))
 response = api_instance.get_customers()
+responseDict = model_to_dict(response)
 pprint(response)
-

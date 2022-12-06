@@ -11,9 +11,9 @@ Name | Type | Description | Notes
 **release_date** | **datetime** | Date the Cisco software image was released | [optional] 
 **release** | **str** | Release of the Cisco software | [optional] 
 **release_notes_url** | **str** | Public URL for the release notes of the Cisco software release | [optional] 
-**bug_severity** | [**[SuggestionSummaryBugSeverityInner]**](SuggestionSummaryBugSeverityInner.md) | Number of bugs the Cisco software release is exposed to, and for suggested releases, the number of bugs the suggested release addresses | [optional] 
-**advisories_severity** | [**[SuggestionSummaryAdvisoriesSeverityInner]**](SuggestionSummaryAdvisoriesSeverityInner.md) | Number of security advisories the current Cisco software releases are exposed to that are addressed by the suggested release | [optional] 
-**field_notice_severity** | [**[SuggestionSummaryFieldNoticeSeverityInner]**](SuggestionSummaryFieldNoticeSeverityInner.md) | Number of field notices the current Cisco software releases are exposed to that are addressed by the suggested release | [optional] 
+**bug_severity** | [**SuggestionSummaryBugSeverityInner**](SuggestionSummaryBugSeverityInner.md) | Number of bugs the Cisco software release is exposed to, and for suggested releases, the number of bugs the suggested release addresses | [optional] 
+**advisories_severity** | [**SuggestionSummaryAdvisoriesSeverityInner**](SuggestionSummaryAdvisoriesSeverityInner.md) | Number of security advisories the current Cisco software releases are exposed to that are addressed by the suggested release | [optional] 
+**field_notice_severity** | [**SuggestionSummaryFieldNoticeSeverityInner**](SuggestionSummaryFieldNoticeSeverityInner.md) | Number of field notices the current Cisco software releases are exposed to that are addressed by the suggested release | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

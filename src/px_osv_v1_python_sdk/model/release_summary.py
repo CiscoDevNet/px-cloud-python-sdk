@@ -84,7 +84,7 @@ class ReleaseSummary(ModelNormal):
         return {
             'error': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
-            'release_date': (date,),  # noqa: E501
+            'release_date': (date, str),  # noqa: E501
             'release': (str,),  # noqa: E501
         }
 
