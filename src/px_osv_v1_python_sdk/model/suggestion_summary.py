@@ -99,9 +99,9 @@ class SuggestionSummary(ModelNormal):
             'release_date': (datetime,),  # noqa: E501
             'release': (str,),  # noqa: E501
             'release_notes_url': (str,),  # noqa: E501
-            'bug_severity': ([SuggestionSummaryBugSeverityInner],),  # noqa: E501
-            'advisories_severity': ([SuggestionSummaryAdvisoriesSeverityInner],),  # noqa: E501
-            'field_notice_severity': ([SuggestionSummaryFieldNoticeSeverityInner],),  # noqa: E501
+            'bug_severity': (SuggestionSummaryBugSeverityInner,),  # noqa: E501
+            'advisories_severity': (SuggestionSummaryAdvisoriesSeverityInner,),  # noqa: E501
+            'field_notice_severity': (SuggestionSummaryFieldNoticeSeverityInner,),  # noqa: E501
         }
 
     @cached_property
@@ -170,9 +170,9 @@ class SuggestionSummary(ModelNormal):
             release_date (datetime): Date the Cisco software image was released. [optional]  # noqa: E501
             release (str): Release of the Cisco software. [optional]  # noqa: E501
             release_notes_url (str): Public URL for the release notes of the Cisco software release. [optional]  # noqa: E501
-            bug_severity ([SuggestionSummaryBugSeverityInner]): Number of bugs the Cisco software release is exposed to, and for suggested releases, the number of bugs the suggested release addresses. [optional]  # noqa: E501
-            advisories_severity ([SuggestionSummaryAdvisoriesSeverityInner]): Number of security advisories the current Cisco software releases are exposed to that are addressed by the suggested release. [optional]  # noqa: E501
-            field_notice_severity ([SuggestionSummaryFieldNoticeSeverityInner]): Number of field notices the current Cisco software releases are exposed to that are addressed by the suggested release. [optional]  # noqa: E501
+            bug_severity (SuggestionSummaryBugSeverityInner): Number of bugs the Cisco software release is exposed to, and for suggested releases, the number of bugs the suggested release addresses. [optional]  # noqa: E501
+            advisories_severity (SuggestionSummaryAdvisoriesSeverityInner): Number of security advisories the current Cisco software releases are exposed to that are addressed by the suggested release. [optional]  # noqa: E501
+            field_notice_severity (SuggestionSummaryFieldNoticeSeverityInner): Number of field notices the current Cisco software releases are exposed to that are addressed by the suggested release. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -265,9 +265,9 @@ class SuggestionSummary(ModelNormal):
             release_date (datetime): Date the Cisco software image was released. [optional]  # noqa: E501
             release (str): Release of the Cisco software. [optional]  # noqa: E501
             release_notes_url (str): Public URL for the release notes of the Cisco software release. [optional]  # noqa: E501
-            bug_severity ([SuggestionSummaryBugSeverityInner]): Number of bugs the Cisco software release is exposed to, and for suggested releases, the number of bugs the suggested release addresses. [optional]  # noqa: E501
-            advisories_severity ([SuggestionSummaryAdvisoriesSeverityInner]): Number of security advisories the current Cisco software releases are exposed to that are addressed by the suggested release. [optional]  # noqa: E501
-            field_notice_severity ([SuggestionSummaryFieldNoticeSeverityInner]): Number of field notices the current Cisco software releases are exposed to that are addressed by the suggested release. [optional]  # noqa: E501
+            bug_severity (SuggestionSummaryBugSeverityInner): Number of bugs the Cisco software release is exposed to, and for suggested releases, the number of bugs the suggested release addresses. [optional]  # noqa: E501
+            advisories_severity (SuggestionSummaryAdvisoriesSeverityInner): Number of security advisories the current Cisco software releases are exposed to that are addressed by the suggested release. [optional]  # noqa: E501
+            field_notice_severity (SuggestionSummaryFieldNoticeSeverityInner): Number of field notices the current Cisco software releases are exposed to that are addressed by the suggested release. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

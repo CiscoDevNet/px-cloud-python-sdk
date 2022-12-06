@@ -1,0 +1,5 @@
+from model.crashRiskAssetsModel import crash_risk_assets_model
+from model.assetsRiskFactorModel import assets_risk_factor_model
+from model.similarAssetsModel import similar_assets_model
+from model.assetsCrashedModel import assets_crashed_model
+from model.crashHistoryModel import crash_history_model

@@ -1,10 +1,10 @@
-CX Partner Portal APIs for the Partners
+# Partner Experience Cloud API Python SDK
 
-For more information, please visit [https://cisco.com](https://cisco.com)
+For more information, please visit: [https://developer.cisco.com/docs/px-cloud/](https://developer.cisco.com/docs/px-cloud/)
 
 ## Requirements
 
-Python >=3.6
+Python >=3.7
 
 ## Installation & Usage
 ### pip install
@@ -14,11 +14,10 @@ If the python package is hosted on a repository, you can install directly using:
 ```sh
 pip install git+https://github.com/CiscoDevNet/px-cloud-python-sdk.git
 ```
-(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/CiscoDevNet/px-cloud-python-sdk.git`)
 
-Then import the package:
+Then import the package you need:
 ```python
-import openapi_client
+import px_v1_python_sdk
 ```
 
 ## Getting Started
@@ -26,28 +25,23 @@ import openapi_client
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```python
-import openapi_client
 from pprint import pprint
-from px_v1_python_sdk.api import contracts_data_api
-from px_v1_python_sdk.model.contracts_error_response import ContractsErrorResponse
-from px_v1_python_sdk.model.data_pagination_response import DataPaginationResponse
+from px_v1_python_sdk import (
+    ApiClient, Configuration, ContractsDataApi, ApiException
+)
 
 # Defining the host is optional and defaults to https://api.pxcloud-stg.cisco.com/torii
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "https://api.pxcloud-stg.cisco.com/torii"
+config = Configuration(
+    host = "https://api.pxcloud-stg.cisco.com/torii",
+    access_token = "YOUR_ACCESS_TOKEN" #oAuth2 Token
 )
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Configure OAuth2 access token for authorization: oAuth2
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with ApiClient(config) as api_client:
     # Create an instance of the API class
-    api_instance = contracts_data_api.ContractsDataApi(api_client)
+    api_instance = ContractsDataApi(api_client)
 
     # Set parameters for response
     success_track_id = 1 # int | successTrackId
@@ -59,10 +53,10 @@ with openapi_client.ApiClient(configuration) as api_client:
 
     try:
         # Get the list of contracts summary
-        api_response = api_instance.fetch_contracts_summary_using_get(success_track_id, puid, customer_id=customer_id, gu_name=gu_name, limit=limit, offset=offset)
-        pprint(api_response)
+        response = api_instance.fetch_contracts_summary_using_get(success_track_id, puid, customer_id=customer_id, gu_name=gu_name, limit=limit, offset=offset)
+        pprint(response)
         
-    except openapi_client.ApiException as e:
+    except ApiException as e:
         print("Exception when calling ContractsDataApi->fetch_contracts_summary_using_get: %s\n" % e)
 ```
 
@@ -125,14 +119,14 @@ Class | Method | HTTP request | Description
 ## oAuth2
 
 - **Type**: OAuth
-- **Flow**: application
-- **Authorization URL**: 
-- **Scopes**: N/A
+- **Flow**: Client Credentials
+- **Authorization URL**: [https://id.cisco.com/oauth2/aus1o4emxorc3wkEe5d7/v1/token](https://id.cisco.com/oauth2/aus1o4emxorc3wkEe5d7/v1/token)
+- **Scopes**: api.authz.iam.manage
 
 
 ## Author
-
-developer-support-pxcloud@cisco.com
+API Support:
+[partner-support@cisco.com](mailto:partner-support@cisco.com)
 
 
 ## Notes for Large OpenAPI documents

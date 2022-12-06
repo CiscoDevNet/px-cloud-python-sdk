@@ -25,6 +25,7 @@ from openapi_client.model_utils import (  # noqa: F401
 from px_v1_python_sdk.model.contract_response import ContractResponse
 from px_v1_python_sdk.model.customer_response import CustomerResponse
 from px_v1_python_sdk.model.error_response import ErrorResponse
+from px_v1_python_sdk.model.success_track_checklist_mapping import SuccessTrackChecklistMapping
 
 
 class PartnerDataApi(object):
@@ -170,7 +171,7 @@ class PartnerDataApi(object):
         )
         self.get_success_tracks_endpoint = _Endpoint(
             settings={
-                'response_type': None,
+                'response_type': (SuccessTrackChecklistMapping,),
                 'auth': [
                     'oAuth2'
                 ],

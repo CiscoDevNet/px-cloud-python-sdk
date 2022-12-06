@@ -229,6 +229,7 @@ class CrashRiskApi(object):
             },
             api_client=api_client
         )
+        
         self.crash_risk_assets_using_get_endpoint = _Endpoint(
             settings={
                 'response_type': (CrashRiskDevices,),

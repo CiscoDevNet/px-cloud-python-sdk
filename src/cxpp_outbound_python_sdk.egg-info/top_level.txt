@@ -1,5 +1,0 @@
-px_crashrisk_v1_python_sdk
-px_faults_v1_python_sdk
-px_osv_v1_python_sdk
-px_riskcompliance_v1_python_sdk
-px_v1_python_sdk
