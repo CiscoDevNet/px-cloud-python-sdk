@@ -1,3 +1,0 @@
-from model.softwareGroupModel import software_group_model
-from model.softwareGroupAssetsModel import software_group_assets_model
-from model.softwareGroupSuggestionsModel import software_group_suggestions_model
