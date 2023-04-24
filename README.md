@@ -1,9 +1,20 @@
-# pxcloud-api-client
-Partner Experience Cloud API Python SDK - LA Release
+# Partner Experience Cloud API - Python SDK
+
+A Python package enabling simple access to the PX Cloud REST API.
+
+## About PX Cloud
+
+Partner Experience (PX) Cloud for Success Tracks is the Cisco partner’s digital experience where they can connect with Cisco and their customers. It aims to transform customer-partner relationships by providing business and technology insights, such as customer lifecycle journeys, access to customer CX Cloud dashboards, partner offers, and more.
+
+More info: [PX Cloud](https://www.cisco.com/c/m/en_us/successhub/px-cloud.html)
+
+## About the PX Cloud REST API
+
+The PX Cloud REST API enables partner applications to integrate PX Cloud portal data and functionality via an easy-to-use REST interface. With this API, partners can access customer life-cycle data and develop innovative, customized services, adding unique value to their customers' business networks.
 
 Available customer data include: organization details, contract information, Success Track analytics, and hardware asset reports.
 
-More info: [PX Cloud API](https://developer.cisco.com/docs/px-cloud/#!introduction-to-partner-experience-cloud-for-success-tracks/introduction-to-partner-experience-cloud-for-success-tracks)
+More info: [PX Cloud API](https://developer.cisco.com/docs/px-cloud) 
 
 ## Requirements
 
