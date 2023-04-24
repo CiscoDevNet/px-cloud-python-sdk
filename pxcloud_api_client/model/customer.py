@@ -86,6 +86,7 @@ class Customer(ModelNormal):
         return {
             'customer_id': (str, ),  # noqa: E501
             'customer_name': (str, ),  # noqa: E501
+            'customer_gu_name': (str, ),  # noqa: E501
             'success_tracks': ([SuccessTracks], ),  # noqa: E501
         }
 
@@ -96,6 +97,7 @@ class Customer(ModelNormal):
     attribute_map = {
         'customer_id': 'customerId',  # noqa: E501
         'customer_name': 'customerName',  # noqa: E501
+        'customer_gu_name': 'customerGUName',  # noqa: E501
         'success_tracks': 'successTracks',  # noqa: E501
     }
 
@@ -141,6 +143,7 @@ class Customer(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             customer_id (str): [optional]  # noqa: E501
             customer_name (str): [optional]  # noqa: E501
+            customer_gu_name (str): [optional]  # noqa: E501
             success_tracks ([SuccessTracks]): [optional]  # noqa: E501
         """
 
@@ -231,6 +234,7 @@ class Customer(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             customer_id (str): [optional]  # noqa: E501
             customer_name (str): [optional]  # noqa: E501
+            customer_gu_name (str): [optional]  # noqa: E501
             success_tracks ([SuccessTracks]): [optional]  # noqa: E501
         """
 

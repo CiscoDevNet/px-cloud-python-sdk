@@ -46,6 +46,7 @@ class ContractsAPIApi(object):
                     'offset',
                     'customer_id',
                     'component_type',
+                    'contract_line_item_type',
                     'success_track_id',
                 ],
                 'required': [
@@ -64,6 +65,7 @@ class ContractsAPIApi(object):
                     'offset': (int, ),
                     'customer_id': (str, ),
                     'component_type': (str, ),
+                    'contract_line_item_type': (str, ),
                     'success_track_id': (str, ),
                 },
                 'attribute_map': {
@@ -72,6 +74,7 @@ class ContractsAPIApi(object):
                     'offset': 'offset',
                     'customer_id': 'customerId',
                     'component_type': 'componentType',
+                    'contract_line_item_type': 'contractLineItemType',
                     'success_track_id': 'successTrackId',
                 },
                 'location_map': {
@@ -80,6 +83,7 @@ class ContractsAPIApi(object):
                     'offset': 'query',
                     'customer_id': 'query',
                     'component_type': 'query',
+                    'contract_line_item_type': 'query',
                     'success_track_id': 'query',
                 },
                 'collection_format_map': {}
@@ -151,6 +155,7 @@ class ContractsAPIApi(object):
             offset (int): [optional]
             customer_id (str): customerId. [optional]
             component_type (str): componentType. [optional]
+            contract_line_item_type (str): contractLineItemType. [optional]
             success_track_id (str): successTrackId. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

@@ -98,7 +98,7 @@ class Configuration(object):
     ):
         """Constructor
         """
-        self._base_path = "https://api.pxcloud.cisco.com/torii" if host is None else host
+        self._base_path = "https://api.pxcloud.cisco.com/sandbox" if host is None else host
         """Default Base url
         """
         self.server_index = 0 if server_index is None and host is None else server_index
@@ -402,8 +402,8 @@ class Configuration(object):
         :return: An array of host settings
         """
         return [{
-            'url': "https://api.pxcloud.cisco.com/torii",
-            'description': "US Prod Environment",
+            'url': "https://api.pxcloud.cisco.com/sandbox",
+            'description': "Sandbox Prod Environment",
         }]
 
     def get_host_from_settings(self, index, variables=None, servers=None):

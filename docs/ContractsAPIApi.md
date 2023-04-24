@@ -1,6 +1,6 @@
 # pxcloud_api_client.ContractsAPIApi
 
-All URIs are relative to *https://api.pxcloud.cisco.com/torii*
+All URIs are relative to *https://api.pxcloud.cisco.com/sandbox*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -24,10 +24,10 @@ from pxcloud_api_client.api import contracts_api_api
 from pxcloud_api_client.model.error_response import ErrorResponse
 from pxcloud_api_client.model.contract_details_response import ContractDetailsResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.pxcloud.cisco.com/torii
+# Defining the host is optional and defaults to https://api.pxcloud.cisco.com/sandbox
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/torii"
+    host = "https://api.pxcloud.cisco.com/sandbox"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -37,7 +37,7 @@ configuration = pxcloud_api_client.Configuration(
 
 # Configure OAuth2 access token for authorization: oAuth2
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/torii"
+    host = "https://api.pxcloud.cisco.com/sandbox"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -50,6 +50,7 @@ with pxcloud_api_client.ApiClient(configuration) as api_client:
     offset = 1 # int |  (optional)
     customer_id = "customerId_example" # str | customerId (optional)
     component_type = "componentType_example" # str | componentType (optional)
+    contract_line_item_type = "contractLineItemType_example" # str | contractLineItemType (optional)
     success_track_id = "successTrackId_example" # str | successTrackId (optional)
 
     # example passing only required values which don't have defaults set
@@ -64,7 +65,7 @@ with pxcloud_api_client.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Get the list of contracts Details from flat table. It supports pagination , filtering and sorting
-        api_response = api_instance.contract_details(contract_number, max=max, offset=offset, customer_id=customer_id, component_type=component_type, success_track_id=success_track_id)
+        api_response = api_instance.contract_details(contract_number, max=max, offset=offset, customer_id=customer_id, component_type=component_type, contract_line_item_type=contract_line_item_type, success_track_id=success_track_id)
         pprint(api_response)
     except pxcloud_api_client.ApiException as e:
         print("Exception when calling ContractsAPIApi->contract_details: %s\n" % e)
@@ -80,6 +81,7 @@ Name | Type | Description  | Notes
  **offset** | **int**|  | [optional]
  **customer_id** | **str**| customerId | [optional]
  **component_type** | **str**| componentType | [optional]
+ **contract_line_item_type** | **str**| contractLineItemType | [optional]
  **success_track_id** | **str**| successTrackId | [optional]
 
 ### Return type
@@ -100,7 +102,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successfully Fetched Contract Details for Given Partner |  * Link - &lt;https://api-cx.cisco.com/px/v1/contract/details?offset&#x3D;20&amp;max&#x3D;10&gt;; rel&#x3D;\&quot;next\&quot;, &lt;https://api-cx.cisco.com/px/v1/contract/details?offset&#x3D;0&amp;max&#x3D;10&gt;; rel&#x3D;\&quot;prev\&quot; <br>  |
+**200** | Successfully Fetched Contract Details for Given Partner |  * Link - &lt;https://api-cx.cisco.com/px/v2/contracts?offset&#x3D;20&amp;max&#x3D;10&gt;; rel&#x3D;\&quot;next\&quot;, &lt;https://api-cx.cisco.com/px/v2/contracts?offset&#x3D;0&amp;max&#x3D;10&gt;; rel&#x3D;\&quot;prev\&quot; <br>  |
 **400** | Bad Input |  * Date -  <br>  |
 **401** | Unauthorized |  * Date -  <br>  |
 **403** | Forbidden |  * Date -  <br>  |
@@ -125,10 +127,10 @@ from pxcloud_api_client.api import contracts_api_api
 from pxcloud_api_client.model.error_response import ErrorResponse
 from pxcloud_api_client.model.contract_response import ContractResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.pxcloud.cisco.com/torii
+# Defining the host is optional and defaults to https://api.pxcloud.cisco.com/sandbox
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/torii"
+    host = "https://api.pxcloud.cisco.com/sandbox"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -138,7 +140,7 @@ configuration = pxcloud_api_client.Configuration(
 
 # Configure OAuth2 access token for authorization: oAuth2
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/torii"
+    host = "https://api.pxcloud.cisco.com/sandbox"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -185,7 +187,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Successfully Fetched Contract Details |  * Link - &lt;https://api-cx.cisco.com/px/v1/contract/details?offset&#x3D;20&amp;max&#x3D;10&gt;; rel&#x3D;\&quot;next\&quot;, &lt;https://api-cx.cisco.com/px/v1/contract/details?offset&#x3D;0&amp;max&#x3D;10&gt;; rel&#x3D;\&quot;prev\&quot; <br>  |
+**200** | Successfully Fetched Contract Details |  * Link - &lt;https://api-cx.cisco.com/px/v2/contracts?offset&#x3D;20&amp;max&#x3D;10&gt;; rel&#x3D;\&quot;next\&quot;, &lt;https://api-cx.cisco.com/px/v2/contracts?offset&#x3D;0&amp;max&#x3D;10&gt;; rel&#x3D;\&quot;prev\&quot; <br>  |
 **400** | Bad Input |  * Date -  <br>  |
 **401** | Unauthorized |  * Date -  <br>  |
 **403** | Forbidden |  * Date -  <br>  |

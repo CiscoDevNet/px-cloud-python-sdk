@@ -1,6 +1,6 @@
 # pxcloud_api_client.PartnerOffersDataApi
 
-All URIs are relative to *https://api.pxcloud.cisco.com/torii*
+All URIs are relative to *https://api.pxcloud.cisco.com/sandbox*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -25,10 +25,10 @@ from pxcloud_api_client.api import partner_offers_data_api
 from pxcloud_api_client.model.error_response import ErrorResponse
 from pxcloud_api_client.model.partner_asset_response import PartnerAssetResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.pxcloud.cisco.com/torii
+# Defining the host is optional and defaults to https://api.pxcloud.cisco.com/sandbox
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/torii"
+    host = "https://api.pxcloud.cisco.com/sandbox"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -38,7 +38,7 @@ configuration = pxcloud_api_client.Configuration(
 
 # Configure OAuth2 access token for authorization: oAuth2
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/torii"
+    host = "https://api.pxcloud.cisco.com/sandbox"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 

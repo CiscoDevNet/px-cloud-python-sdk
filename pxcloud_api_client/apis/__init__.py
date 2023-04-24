@@ -23,3 +23,4 @@ from pxcloud_api_client.api.insights_api import InsightsApi
 from pxcloud_api_client.api.partner_data_api import PartnerDataApi
 from pxcloud_api_client.api.partner_offers_data_api import PartnerOffersDataApi
 from pxcloud_api_client.api.partner_offers_sessions_data_api import PartnerOffersSessionsDataApi
+from pxcloud_api_client.api.v1_contracts_with_customers_api_api import V1ContractsWithCustomersAPIApi

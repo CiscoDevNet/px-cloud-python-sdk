@@ -4,7 +4,7 @@ A Python package enabling simple access to the PX Cloud REST API.
 
 ## About PX Cloud
 
-Partner Experience (PX) Cloud for Success Tracks is the Cisco partner’s digital experience where they can connect with Cisco and their customers. It aims to transform customer-partner relationships by providing business and technology insights, such as customer lifecycle journeys, access to customer CX Cloud dashboards, partner offers, and more.
+Partner Experience (PX) Cloud for Success Tracks is the Cisco partner's digital experience where they can connect with Cisco and their customers. It aims to transform customer-partner relationships by providing business and technology insights, such as customer lifecycle journeys, access to customer CX Cloud dashboards, partner offers, and more.
 
 More info: [PX Cloud](https://www.cisco.com/c/m/en_us/successhub/px-cloud.html)
 
