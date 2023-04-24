@@ -45,6 +45,6 @@ with pxcloud_api_client.ApiClient(configuration) as api_client:
     try:
         # Get the violations of the asset
         api_response = api_instance.asset_violations(success_track_id, source_system_id, customer_id, asset_id, offset=offset, max=max)
-        pprint(api_response["items"][-1]["violation_age"])
+        pprint(api_response)
     except pxcloud_api_client.ApiException as e:
         print("Exception when calling ComplianceApi->asset_violations: %s\n" % e)
