@@ -27,7 +27,6 @@ class CustomerDataApi(object):
 
     Do not edit the class manually.
     """
-
     def __init__(self, api_client=None):
         if api_client is None:
             api_client = ApiClient()

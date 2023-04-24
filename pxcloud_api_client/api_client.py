@@ -682,7 +682,6 @@ class ApiClient(object):
 
 
 class Endpoint(object):
-
     def __init__(self,
                  settings=None,
                  params_map=None,

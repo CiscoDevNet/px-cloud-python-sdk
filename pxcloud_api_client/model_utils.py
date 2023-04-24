@@ -123,7 +123,6 @@ def composed_model_input_classes(cls):
 
 class OpenApiModel(object):
     """The base class for all OpenAPIModels"""
-
     def set_attribute(self, name, value):
         # this is only used to set properties on self
 
@@ -432,7 +431,6 @@ class OpenApiModel(object):
 class ModelSimple(OpenApiModel):
     """the parent class of models whose type != object in their
     swagger/openapi"""
-
     def __setitem__(self, name, value):
         """set the value of an attribute using square-bracket notation: `instance[attr] = val`"""
         if name in self.required_properties:
@@ -485,7 +483,6 @@ class ModelSimple(OpenApiModel):
 class ModelNormal(OpenApiModel):
     """the parent class of models whose type == object in their
     swagger/openapi"""
-
     def __setitem__(self, name, value):
         """set the value of an attribute using square-bracket notation: `instance[attr] = val`"""
         if name in self.required_properties:
@@ -568,7 +565,6 @@ class ModelComposed(OpenApiModel):
     value (list): list of class instances, self or instances in _composed_instances
     which contain the value that the key is referring to.
     """
-
     def __setitem__(self, name, value):
         """set the value of an attribute using square-bracket notation: `instance[attr] = val`"""
         if name in self.required_properties:
@@ -993,7 +989,6 @@ def order_response_types(required_types):
         (list): coercion order sorted collection of classes or instance
             of list or dict with class information inside it.
     """
-
     def index_getter(class_or_instance):
         if isinstance(class_or_instance, list):
             return COERCION_INDEX_BY_TYPE[list]

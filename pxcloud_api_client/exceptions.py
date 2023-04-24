@@ -14,7 +14,6 @@ class OpenApiException(Exception):
 
 
 class ApiTypeError(OpenApiException, TypeError):
-
     def __init__(self,
                  msg,
                  path_to_item=None,
@@ -47,7 +46,6 @@ class ApiTypeError(OpenApiException, TypeError):
 
 
 class ApiValueError(OpenApiException, ValueError):
-
     def __init__(self, msg, path_to_item=None):
         """
         Args:
@@ -66,7 +64,6 @@ class ApiValueError(OpenApiException, ValueError):
 
 
 class ApiAttributeError(OpenApiException, AttributeError):
-
     def __init__(self, msg, path_to_item=None):
         """
         Raised when an attribute reference or assignment fails.
@@ -86,7 +83,6 @@ class ApiAttributeError(OpenApiException, AttributeError):
 
 
 class ApiKeyError(OpenApiException, KeyError):
-
     def __init__(self, msg, path_to_item=None):
         """
         Args:
@@ -104,7 +100,6 @@ class ApiKeyError(OpenApiException, KeyError):
 
 
 class ApiException(OpenApiException):
-
     def __init__(self, status=None, reason=None, http_resp=None):
         if http_resp:
             self.status = http_resp.status
@@ -132,25 +127,21 @@ class ApiException(OpenApiException):
 
 
 class NotFoundException(ApiException):
-
     def __init__(self, status=None, reason=None, http_resp=None):
         super(NotFoundException, self).__init__(status, reason, http_resp)
 
 
 class UnauthorizedException(ApiException):
-
     def __init__(self, status=None, reason=None, http_resp=None):
         super(UnauthorizedException, self).__init__(status, reason, http_resp)
 
 
 class ForbiddenException(ApiException):
-
     def __init__(self, status=None, reason=None, http_resp=None):
         super(ForbiddenException, self).__init__(status, reason, http_resp)
 
 
 class ServiceException(ApiException):
-
     def __init__(self, status=None, reason=None, http_resp=None):
         super(ServiceException, self).__init__(status, reason, http_resp)
 

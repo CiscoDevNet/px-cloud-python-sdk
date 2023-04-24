@@ -7,7 +7,6 @@ def getToken(envInfo: dict):
         envInfo['authURL'], envInfo['authPARAMS'], envInfo['clientId'], envInfo['clientSecret'])
     headers = {'Content-Type': 'application/x-www-form-urlencoded'}
     response = http.request("POST", req_url, headers=headers)
-    # response = requests.request("POST", req_url, headers=headers)
     print('new token generated for: {} environment'.format(
         envInfo['key']))
     return json.loads(response.data.decode('utf-8'))['access_token']

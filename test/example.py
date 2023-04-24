@@ -1,4 +1,3 @@
-import time
 import pxcloud_api_client
 from pprint import pprint
 from pxcloud_api_client.api import compliance_api
@@ -10,7 +9,7 @@ from pxcloud_api_client.model.opt_in_response import OptInResponse
 from pxcloud_api_client.model.policy_rule_details import PolicyRuleDetails
 from pxcloud_api_client.model.suggestions_response import SuggestionsResponse
 from pxcloud_api_client.model.violation_summary_response import ViolationSummaryResponse
-from env_src import Env
+from auth import Env
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
@@ -46,6 +45,6 @@ with pxcloud_api_client.ApiClient(configuration) as api_client:
     try:
         # Get the violations of the asset
         api_response = api_instance.asset_violations(success_track_id, source_system_id, customer_id, asset_id, offset=offset, max=max)
-        pprint(api_response)
+        pprint(api_response["items"][-1]["violation_age"])
     except pxcloud_api_client.ApiException as e:
         print("Exception when calling ComplianceApi->asset_violations: %s\n" % e)
