@@ -2,6 +2,7 @@
 
 A Python package enabling simple access to the PX Cloud REST API.
 
+
 ## About PX Cloud
 
 Partner Experience (PX) Cloud for Success Tracks is the Cisco partner's digital experience where they can connect with Cisco and their customers. It aims to transform customer-partner relationships by providing business and technology insights, such as customer lifecycle journeys, access to customer CX Cloud dashboards, partner offers, and more.
@@ -14,9 +15,9 @@ The PX Cloud REST API enables partner applications to integrate PX Cloud portal 
 
 Available customer data include: organization details, contract information, Success Track analytics, and hardware asset reports.
 
-More info: [PX Cloud API](https://developer.cisco.com/docs/px-cloud) 
+More info: [PX Cloud API](https://developer.cisco. com/docs/px-cloud)
 
-## Requirements
+## Requirements.
 
 Python >=3.6
 
@@ -67,10 +68,10 @@ from pxcloud_api_client.model.opt_in_response import OptInResponse
 from pxcloud_api_client.model.policy_rule_details import PolicyRuleDetails
 from pxcloud_api_client.model.suggestions_response import SuggestionsResponse
 from pxcloud_api_client.model.violation_summary_response import ViolationSummaryResponse
-# Defining the host is optional and defaults to https://api.pxcloud.cisco.com/sandbox
+# Defining the host is optional and defaults to https://api-cx.cisco.com/px/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/sandbox"
+    host = "https://api-cx.cisco.com/px/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -80,7 +81,7 @@ configuration = pxcloud_api_client.Configuration(
 
 # Configure OAuth2 access token for authorization: oAuth2
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/sandbox"
+    host = "https://api-cx.cisco.com/px/v1"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -106,7 +107,7 @@ with pxcloud_api_client.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.pxcloud.cisco.com/sandbox*
+All URIs are relative to *https://api-cx.cisco.com/px/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -117,8 +118,8 @@ Class | Method | HTTP request | Description
 *ComplianceApi* | [**suggestions**](docs/ComplianceApi.md#suggestions) | **GET** /v1/customers/{customerId}/insights/compliance/suggestions | Get the Suggestions filtered upon Severity (if given), for summary tab
 *ComplianceApi* | [**violations**](docs/ComplianceApi.md#violations) | **GET** /v1/customers/{customerId}/insights/compliance/violations | Get the violation summary of a customer
 *ComplianceApi* | [**violations_assets**](docs/ComplianceApi.md#violations_assets) | **GET** /v1/customers/{customerId}/insights/compliance/violations/assets | Get the violation details of impacted assets for the customer, and selected policy Group, Policy and Rule
-*ContractsAPIApi* | [**contract_details**](docs/ContractsAPIApi.md#contract_details) | **GET** /v1/contract/details | Get the list of contracts Details from flat table. It supports pagination , filtering and sorting
-*ContractsAPIApi* | [**contracts**](docs/ContractsAPIApi.md#contracts) | **GET** /v1/contracts | Get the list of customer contracts for a particular partner. It supports pagination with offset and limit parameters , filtering and sorting
+*ContractsApi* | [**contract_details**](docs/ContractsApi.md#contract_details) | **GET** /v1/contract/details | Get the list of contracts Details from flat table. It supports pagination , filtering and sorting
+*ContractsApi* | [**contracts**](docs/ContractsApi.md#contracts) | **GET** /v1/contracts | Get the list of customer contracts for a particular partner. It supports pagination with offset and limit parameters , filtering and sorting
 *CrashRiskApi* | [**asset_risk_factors**](docs/CrashRiskApi.md#asset_risk_factors) | **GET** /v1/customers/{customerId}/insights/crashRisk/assets/{assetIdBase64}/riskFactors | Get risk factors of a device
 *CrashRiskApi* | [**assets**](docs/CrashRiskApi.md#assets) | **GET** /v1/customers/{customerId}/insights/crashRisk/assets | Get devices which are at risk of crash owned by a customer, sorted by risk score in descending order by default
 *CrashRiskApi* | [**assets_crashed**](docs/CrashRiskApi.md#assets_crashed) | **GET** /v1/customers/{customerId}/insights/crashRisk/assetsCrashed | Get the list of crashed devices for last given time period
@@ -127,7 +128,7 @@ Class | Method | HTTP request | Description
 *CustomerDataApi* | [**lifecycle**](docs/CustomerDataApi.md#lifecycle) | **GET** /v1/customers/{customerId}/lifecycle | Get customer lifecycle
 *CustomerDataApi* | [**report_summary**](docs/CustomerDataApi.md#report_summary) | **GET** /v1/customers/{customerId}/reports/{reportId} | Get the report
 *CustomerDataApi* | [**reports**](docs/CustomerDataApi.md#reports) | **POST** /v1/customers/{customerId}/reports | Request customer data reports as bulk files
-*CustomersAPIApi* | [**customers**](docs/CustomersAPIApi.md#customers) | **GET** /v1/customers | Fetch list of customers paginated for a given partner Id
+*CustomersApi* | [**customers**](docs/CustomersApi.md#customers) | **GET** /v1/customers | Fetch list of customers paginated for a given partner Id
 *FaultsApi* | [**fault_affected_assets**](docs/FaultsApi.md#fault_affected_assets) | **GET** /v1/customers/{customerId}/insights/faults/{faultId}/affectedAssets | Affected Assets
 *FaultsApi* | [**fault_history**](docs/FaultsApi.md#fault_history) | **GET** /v1/customers/{customerId}/insights/faults/{faultId}/affectedAssets/{assetName}/faultHistory | Assets Fault History
 *FaultsApi* | [**fault_summary**](docs/FaultsApi.md#fault_summary) | **GET** /v1/customers/{customerId}/insights/faults/{faultId}/summary | Fault summary
@@ -141,6 +142,7 @@ Class | Method | HTTP request | Description
 *PartnerDataApi* | [**success_tracks**](docs/PartnerDataApi.md#success_tracks) | **GET** /v1/successTracks | Success Tracks
 *PartnerOffersDataApi* | [**partner_offers**](docs/PartnerOffersDataApi.md#partner_offers) | **GET** /v1/partnerOffers | Get Partner Offers
 *PartnerOffersSessionsDataApi* | [**partner_offers_sessions**](docs/PartnerOffersSessionsDataApi.md#partner_offers_sessions) | **GET** /v1/partnerOffersSessions | Get Partner Offers Session data
+*V1ContractsWithCustomersApi* | [**contracts_with_customers**](docs/V1ContractsWithCustomersApi.md#contracts_with_customers) | **GET** /v1/contractsWithCustomers | Get the Outbound Contracts With Customers
 
 
 ## Documentation For Models
@@ -242,14 +244,9 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
+The access token authentication request is based on the OAuth client credentials grant flow, which is a single HTTP transaction, not requiring user interaction to complete.
 
-## oAuth2
-
-- **Type**: OAuth
-- **Flow**: application
-- **Authorization URL**: 
-- **Scopes**: N/A
-
+More info: [Authentication for PX Cloud API](https://developer.cisco.com/docs/px-cloud/#!authentication/)
 
 ## Author
 

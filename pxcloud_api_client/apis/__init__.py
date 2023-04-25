@@ -14,13 +14,13 @@
 
 # Import APIs into API package:
 from pxcloud_api_client.api.compliance_api import ComplianceApi
-from pxcloud_api_client.api.contracts_api_api import ContractsAPIApi
+from pxcloud_api_client.api.contracts_api import ContractsApi
 from pxcloud_api_client.api.crash_risk_api import CrashRiskApi
 from pxcloud_api_client.api.customer_data_api import CustomerDataApi
-from pxcloud_api_client.api.customers_api_api import CustomersAPIApi
+from pxcloud_api_client.api.customers_api import CustomersApi
 from pxcloud_api_client.api.faults_api import FaultsApi
 from pxcloud_api_client.api.insights_api import InsightsApi
 from pxcloud_api_client.api.partner_data_api import PartnerDataApi
 from pxcloud_api_client.api.partner_offers_data_api import PartnerOffersDataApi
 from pxcloud_api_client.api.partner_offers_sessions_data_api import PartnerOffersSessionsDataApi
-from pxcloud_api_client.api.v1_contracts_with_customers_api_api import V1ContractsWithCustomersAPIApi
+from pxcloud_api_client.api.v1_contracts_with_customers_api import V1ContractsWithCustomersApi

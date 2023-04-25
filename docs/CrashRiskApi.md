@@ -1,6 +1,6 @@
 # pxcloud_api_client.CrashRiskApi
 
-All URIs are relative to *https://api.pxcloud.cisco.com/sandbox*
+All URIs are relative to *https://api-cx.cisco.com/px/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -29,10 +29,10 @@ from pxcloud_api_client.api import crash_risk_api
 from pxcloud_api_client.model.device_risk_factors_response import DeviceRiskFactorsResponse
 from pxcloud_api_client.model.error_response import ErrorResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.pxcloud.cisco.com/sandbox
+# Defining the host is optional and defaults to https://api-cx.cisco.com/px/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/sandbox"
+    host = "https://api-cx.cisco.com/px/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -42,7 +42,7 @@ configuration = pxcloud_api_client.Configuration(
 
 # Configure OAuth2 access token for authorization: oAuth2
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/sandbox"
+    host = "https://api-cx.cisco.com/px/v1"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -116,10 +116,10 @@ from pxcloud_api_client.api import crash_risk_api
 from pxcloud_api_client.model.crash_risk_devices import CrashRiskDevices
 from pxcloud_api_client.model.error_response import ErrorResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.pxcloud.cisco.com/sandbox
+# Defining the host is optional and defaults to https://api-cx.cisco.com/px/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/sandbox"
+    host = "https://api-cx.cisco.com/px/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -129,7 +129,7 @@ configuration = pxcloud_api_client.Configuration(
 
 # Configure OAuth2 access token for authorization: oAuth2
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/sandbox"
+    host = "https://api-cx.cisco.com/px/v1"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -214,10 +214,10 @@ from pxcloud_api_client.api import crash_risk_api
 from pxcloud_api_client.model.error_response import ErrorResponse
 from pxcloud_api_client.model.inventory_crash_details import InventoryCrashDetails
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.pxcloud.cisco.com/sandbox
+# Defining the host is optional and defaults to https://api-cx.cisco.com/px/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/sandbox"
+    host = "https://api-cx.cisco.com/px/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -227,7 +227,7 @@ configuration = pxcloud_api_client.Configuration(
 
 # Configure OAuth2 access token for authorization: oAuth2
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/sandbox"
+    host = "https://api-cx.cisco.com/px/v1"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -309,10 +309,10 @@ from pxcloud_api_client.api import crash_risk_api
 from pxcloud_api_client.model.error_response import ErrorResponse
 from pxcloud_api_client.model.device_crash_detail import DeviceCrashDetail
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.pxcloud.cisco.com/sandbox
+# Defining the host is optional and defaults to https://api-cx.cisco.com/px/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/sandbox"
+    host = "https://api-cx.cisco.com/px/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -322,7 +322,7 @@ configuration = pxcloud_api_client.Configuration(
 
 # Configure OAuth2 access token for authorization: oAuth2
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/sandbox"
+    host = "https://api-cx.cisco.com/px/v1"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -395,10 +395,10 @@ from pxcloud_api_client.api import crash_risk_api
 from pxcloud_api_client.model.similar_devices import SimilarDevices
 from pxcloud_api_client.model.error_response import ErrorResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.pxcloud.cisco.com/sandbox
+# Defining the host is optional and defaults to https://api-cx.cisco.com/px/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/sandbox"
+    host = "https://api-cx.cisco.com/px/v1"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -408,7 +408,7 @@ configuration = pxcloud_api_client.Configuration(
 
 # Configure OAuth2 access token for authorization: oAuth2
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api.pxcloud.cisco.com/sandbox"
+    host = "https://api-cx.cisco.com/px/v1"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
