@@ -27,11 +27,12 @@ Python >=3.6
 If the python package is hosted on a repository, you can install directly using:
 
 ```sh
-pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git
+pip install git+https://github.com/CiscoDevNet/px-cloud-python-sdk.git
 ```
-(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git`)
 
-Then import the package:
+(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/CiscoDevNet/px-cloud-python-sdk.git`)
+
+Then import the package you need:
 ```python
 import pxcloud_api_client
 ```
@@ -104,6 +105,12 @@ with pxcloud_api_client.ApiClient(configuration) as api_client:
     except pxcloud_api_client.ApiException as e:
         print("Exception when calling ComplianceApi->asset_violations: %s\n" % e)
 ```
+
+## Auto Authentication
+
+The [auth.py](./examples/auth.py) generates the authorization tokens to access the PXCloud.
+
+For more info see [example.py](./examples/example.py) which shows the usage of the [auth.py](./examples/auth.py).
 
 ## Documentation for API Endpoints
 
@@ -248,10 +255,9 @@ The access token authentication request is based on the OAuth client credentials
 
 More info: [Authentication for PX Cloud API](https://developer.cisco.com/docs/px-cloud/#!authentication/)
 
-## Author
+## Troubleshooting and FAQs
 
-partner-support@cisco.com
-
+For FAQs and Troubleshooting please make use of the official forum [cisco communities](https://community.cisco.com/t5/px-cloud/ct-p/px-cloud)
 
 ## Notes for Large OpenAPI documents
 If the OpenAPI document is large, imports in pxcloud_api_client.apis and pxcloud_api_client.models may fail with a
