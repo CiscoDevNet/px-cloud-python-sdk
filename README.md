@@ -255,7 +255,7 @@ The access token authentication request is based on the OAuth client credentials
 
 More info: [Authentication for PX Cloud API](https://developer.cisco.com/docs/px-cloud/#!authentication/)
 
-## Troubleshooting and FAQs
+## FAQs and Troubleshooting
 
 For FAQs and Troubleshooting please make use of the official forum [cisco communities](https://community.cisco.com/t5/px-cloud/ct-p/px-cloud)
 
