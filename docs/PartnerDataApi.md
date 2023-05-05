@@ -1,6 +1,6 @@
 # pxcloud_api_client.PartnerDataApi
 
-All URIs are relative to *https://api-cx.cisco.com/px/v1*
+All URIs are relative to *https://api-cx.cisco.com/px*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -24,10 +24,10 @@ import pxcloud_api_client
 from pxcloud_api_client.api import partner_data_api
 from pxcloud_api_client.model.error_response import ErrorResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-cx.cisco.com/px/v1
+# Defining the host is optional and defaults to https://api-cx.cisco.com/px
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px/v1"
+    host = "https://api-cx.cisco.com/px"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -37,7 +37,7 @@ configuration = pxcloud_api_client.Configuration(
 
 # Configure OAuth2 access token for authorization: oAuth2
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px/v1"
+    host = "https://api-cx.cisco.com/px"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
