@@ -15,7 +15,7 @@ The PX Cloud REST API enables partner applications to integrate PX Cloud portal 
 
 Available customer data include: organization details, contract information, Success Track analytics, and hardware asset reports.
 
-More info: [PX Cloud API](https://developer.cisco. com/docs/px-cloud)
+More info: [PX Cloud API](https://developer.cisco.com/docs/px-cloud)
 
 ## Requirements.
 
@@ -69,10 +69,10 @@ from pxcloud_api_client.model.opt_in_response import OptInResponse
 from pxcloud_api_client.model.policy_rule_details import PolicyRuleDetails
 from pxcloud_api_client.model.suggestions_response import SuggestionsResponse
 from pxcloud_api_client.model.violation_summary_response import ViolationSummaryResponse
-# Defining the host is optional and defaults to https://api-cx.cisco.com/px/v1
+# Defining the host is optional and defaults to https://api-cx.cisco.com/px
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px/v1"
+    host = "https://api-cx.cisco.com/px"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -82,7 +82,7 @@ configuration = pxcloud_api_client.Configuration(
 
 # Configure OAuth2 access token for authorization: oAuth2
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px/v1"
+    host = "https://api-cx.cisco.com/px"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
