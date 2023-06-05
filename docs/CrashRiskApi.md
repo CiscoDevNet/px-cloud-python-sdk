@@ -1,302 +1,20 @@
 # pxcloud_api_client.CrashRiskApi
 
-All URIs are relative to *https://api-cx.cisco.com/px*
+All URIs are relative to *https://api-cx.cisco.com/sandbox/px*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**asset_risk_factors**](CrashRiskApi.md#asset_risk_factors) | **GET** /v1/customers/{customerId}/insights/crashRisk/assets/{assetIdBase64}/riskFactors | Get risk factors of a device
-[**assets**](CrashRiskApi.md#assets) | **GET** /v1/customers/{customerId}/insights/crashRisk/assets | Get devices which are at risk of crash owned by a customer, sorted by risk score in descending order by default
-[**assets_crashed**](CrashRiskApi.md#assets_crashed) | **GET** /v1/customers/{customerId}/insights/crashRisk/assetsCrashed | Get the list of crashed devices for last given time period
-[**crash_history**](CrashRiskApi.md#crash_history) | **GET** /v1/customers/{customerId}/insights/crashRisk/asset/{assetIdBase64}/crashHistory | Get the device crash-detail - Asset 360(time stamp, reset reason)
-[**similar_assets**](CrashRiskApi.md#similar_assets) | **GET** /v1/customers/{customerId}/insights/crashRisk/assets/{assetIdBase64}/similarAssets | Get similar assets based on the similarity score
+[**get_crash_asset_crash_history**](CrashRiskApi.md#get_crash_asset_crash_history) | **GET** /v1/customers/{customerId}/insights/crashRisk/asset/{assetIdBase64}/crashHistory | List asset crash history incidents
+[**get_crash_risk_asset_risk_factors**](CrashRiskApi.md#get_crash_risk_asset_risk_factors) | **GET** /v1/customers/{customerId}/insights/crashRisk/assets/{assetIdBase64}/riskFactors | List crash risk asset risk factors
+[**get_crash_risk_asset_similar_assets**](CrashRiskApi.md#get_crash_risk_asset_similar_assets) | **GET** /v1/customers/{customerId}/insights/crashRisk/assets/{assetIdBase64}/similarAssets | List crash risk asset similar assets
+[**get_crash_risk_assets**](CrashRiskApi.md#get_crash_risk_assets) | **GET** /v1/customers/{customerId}/insights/crashRisk/assets | List assets at risk of crashing
+[**list_crash_risk_assets_crashed**](CrashRiskApi.md#list_crash_risk_assets_crashed) | **GET** /v1/customers/{customerId}/insights/crashRisk/assetsCrashed | List assets which have crashed
 
 
-# **asset_risk_factors**
-> DeviceRiskFactorsResponse asset_risk_factors(success_track_id, customer_id, asset_id_base64)
+# **get_crash_asset_crash_history**
+> DeviceCrashDetail get_crash_asset_crash_history(customer_id, asset_id_base64, success_track_id)
 
-Get risk factors of a device
-
-This API provides list of risk factors that contribute to the high risk score. Default sorting is factorWeight
-
-### Example
-
-* OAuth Authentication (oAuth2):
-
-```python
-import time
-import pxcloud_api_client
-from pxcloud_api_client.api import crash_risk_api
-from pxcloud_api_client.model.device_risk_factors_response import DeviceRiskFactorsResponse
-from pxcloud_api_client.model.error_response import ErrorResponse
-from pprint import pprint
-# Defining the host is optional and defaults to https://api-cx.cisco.com/px
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure OAuth2 access token for authorization: oAuth2
-configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# Enter a context with an instance of the API client
-with pxcloud_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = crash_risk_api.CrashRiskApi(api_client)
-    success_track_id = "successTrackId_example" # str | 
-    customer_id = "customerId_example" # str | 
-    asset_id_base64 = "assetIdBase64_example" # str | base64 encoded value of the assetId
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Get risk factors of a device
-        api_response = api_instance.asset_risk_factors(success_track_id, customer_id, asset_id_base64)
-        pprint(api_response)
-    except pxcloud_api_client.ApiException as e:
-        print("Exception when calling CrashRiskApi->asset_risk_factors: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **success_track_id** | **str**|  |
- **customer_id** | **str**|  |
- **asset_id_base64** | **str**| base64 encoded value of the assetId |
-
-### Return type
-
-[**DeviceRiskFactorsResponse**](DeviceRiskFactorsResponse.md)
-
-### Authorization
-
-[oAuth2](../README.md#oAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Ok |  * Date -  <br>  |
-**400** | Bad Request |  * Date -  <br>  |
-**401** | Unauthorized |  * Date -  <br>  |
-**403** | Forbidden error |  * Date -  <br>  |
-**404** | Not Found |  * Date -  <br>  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **assets**
-> CrashRiskDevices assets(success_track_id, customer_id)
-
-Get devices which are at risk of crash owned by a customer, sorted by risk score in descending order by default
-
-This API provides details of the devices that have a probability of crash with crash score rating as High, Medium and Low. Default sorting is End date
-
-### Example
-
-* OAuth Authentication (oAuth2):
-
-```python
-import time
-import pxcloud_api_client
-from pxcloud_api_client.api import crash_risk_api
-from pxcloud_api_client.model.crash_risk_devices import CrashRiskDevices
-from pxcloud_api_client.model.error_response import ErrorResponse
-from pprint import pprint
-# Defining the host is optional and defaults to https://api-cx.cisco.com/px
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure OAuth2 access token for authorization: oAuth2
-configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# Enter a context with an instance of the API client
-with pxcloud_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = crash_risk_api.CrashRiskApi(api_client)
-    success_track_id = "successTrackId_example" # str | 
-    customer_id = "customerId_example" # str | 
-    offset = 1 # int |  (optional) if omitted the server will use the default value of 1
-    max = 10 # int |  (optional) if omitted the server will use the default value of 10
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Get devices which are at risk of crash owned by a customer, sorted by risk score in descending order by default
-        api_response = api_instance.assets(success_track_id, customer_id)
-        pprint(api_response)
-    except pxcloud_api_client.ApiException as e:
-        print("Exception when calling CrashRiskApi->assets: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Get devices which are at risk of crash owned by a customer, sorted by risk score in descending order by default
-        api_response = api_instance.assets(success_track_id, customer_id, offset=offset, max=max)
-        pprint(api_response)
-    except pxcloud_api_client.ApiException as e:
-        print("Exception when calling CrashRiskApi->assets: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **success_track_id** | **str**|  |
- **customer_id** | **str**|  |
- **offset** | **int**|  | [optional] if omitted the server will use the default value of 1
- **max** | **int**|  | [optional] if omitted the server will use the default value of 10
-
-### Return type
-
-[**CrashRiskDevices**](CrashRiskDevices.md)
-
-### Authorization
-
-[oAuth2](../README.md#oAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Ok |  * Date -  <br>  |
-**400** | Bad Request |  * Date -  <br>  |
-**401** | Unauthorized |  * Date -  <br>  |
-**403** | Forbidden error |  * Date -  <br>  |
-**404** | Not Found |  * Date -  <br>  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **assets_crashed**
-> InventoryCrashDetails assets_crashed(success_track_id, customer_id)
-
-Get the list of crashed devices for last given time period
-
-This API provides the list of devices with details (i.e. Asset, Product Id, Product Family, Software Version, Crash Count, First Occurrence and Last Occurrence) by customer Id that have crashed in the last 1d,7d,15d,90d based on the filter input. Default sort is by lastCrashDate
-
-### Example
-
-* OAuth Authentication (oAuth2):
-
-```python
-import time
-import pxcloud_api_client
-from pxcloud_api_client.api import crash_risk_api
-from pxcloud_api_client.model.error_response import ErrorResponse
-from pxcloud_api_client.model.inventory_crash_details import InventoryCrashDetails
-from pprint import pprint
-# Defining the host is optional and defaults to https://api-cx.cisco.com/px
-# See configuration.py for a list of all supported configuration parameters.
-configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure OAuth2 access token for authorization: oAuth2
-configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px"
-)
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
-# Enter a context with an instance of the API client
-with pxcloud_api_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = crash_risk_api.CrashRiskApi(api_client)
-    success_track_id = "successTrackId_example" # str | 
-    customer_id = "customerId_example" # str | customerId
-    time_period = "1" # str | timePeriod (optional) if omitted the server will use the default value of "1"
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Get the list of crashed devices for last given time period
-        api_response = api_instance.assets_crashed(success_track_id, customer_id)
-        pprint(api_response)
-    except pxcloud_api_client.ApiException as e:
-        print("Exception when calling CrashRiskApi->assets_crashed: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Get the list of crashed devices for last given time period
-        api_response = api_instance.assets_crashed(success_track_id, customer_id, time_period=time_period)
-        pprint(api_response)
-    except pxcloud_api_client.ApiException as e:
-        print("Exception when calling CrashRiskApi->assets_crashed: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **success_track_id** | **str**|  |
- **customer_id** | **str**| customerId |
- **time_period** | **str**| timePeriod | [optional] if omitted the server will use the default value of "1"
-
-### Return type
-
-[**InventoryCrashDetails**](InventoryCrashDetails.md)
-
-### Authorization
-
-[oAuth2](../README.md#oAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  * Date -  <br>  |
-**401** | Unauthorized |  * Date -  <br>  |
-**403** | Forbidden |  * Date -  <br>  |
-**404** | Not Found |  * Date -  <br>  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **crash_history**
-> DeviceCrashDetail crash_history(success_track_id, customer_id, asset_id_base64)
-
-Get the device crash-detail - Asset 360(time stamp, reset reason)
-
-Details of the number of times the device crashed in the last 365 days with reset reason. Default sort is by timeStamp
+List asset crash history incidents
 
 ### Example
 
@@ -309,10 +27,10 @@ from pxcloud_api_client.api import crash_risk_api
 from pxcloud_api_client.model.error_response import ErrorResponse
 from pxcloud_api_client.model.device_crash_detail import DeviceCrashDetail
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-cx.cisco.com/px
+# Defining the host is optional and defaults to https://api-cx.cisco.com/sandbox/px
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px"
+    host = "https://api-cx.cisco.com/sandbox/px"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -322,7 +40,7 @@ configuration = pxcloud_api_client.Configuration(
 
 # Configure OAuth2 access token for authorization: oAuth2
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px"
+    host = "https://api-cx.cisco.com/sandbox/px"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -330,17 +48,17 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with pxcloud_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = crash_risk_api.CrashRiskApi(api_client)
+    customer_id = "customerId_example" # str | Unique identifier of the customer
+    asset_id_base64 = "assetIdBase64_example" # str | Base64 encoded value of the `assetId`.
     success_track_id = "successTrackId_example" # str | 
-    customer_id = "customerId_example" # str | customerId
-    asset_id_base64 = "assetIdBase64_example" # str | base64 encoded value of the assetId
 
     # example passing only required values which don't have defaults set
     try:
-        # Get the device crash-detail - Asset 360(time stamp, reset reason)
-        api_response = api_instance.crash_history(success_track_id, customer_id, asset_id_base64)
+        # List asset crash history incidents
+        api_response = api_instance.get_crash_asset_crash_history(customer_id, asset_id_base64, success_track_id)
         pprint(api_response)
     except pxcloud_api_client.ApiException as e:
-        print("Exception when calling CrashRiskApi->crash_history: %s\n" % e)
+        print("Exception when calling CrashRiskApi->get_crash_asset_crash_history: %s\n" % e)
 ```
 
 
@@ -348,9 +66,9 @@ with pxcloud_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **customer_id** | **str**| Unique identifier of the customer |
+ **asset_id_base64** | **str**| Base64 encoded value of the &#x60;assetId&#x60;. |
  **success_track_id** | **str**|  |
- **customer_id** | **str**| customerId |
- **asset_id_base64** | **str**| base64 encoded value of the assetId |
 
 ### Return type
 
@@ -370,19 +88,113 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  * Date -  <br>  |
-**401** | Unauthorized |  * Date -  <br>  |
-**403** | Forbidden |  * Date -  <br>  |
-**404** | Not Found |  * Date -  <br>  |
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**500** | Internal server error |  -  |
+**503** | Service Unavailable |  -  |
+**504** | Gateway timeout |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **similar_assets**
-> SimilarDevices similar_assets(success_track_id, customer_id, asset_id_base64, similarity_criteria)
+# **get_crash_risk_asset_risk_factors**
+> DeviceRiskFactorsResponse get_crash_risk_asset_risk_factors(success_track_id, customer_id, asset_id_base64)
 
-Get similar assets based on the similarity score
+List crash risk asset risk factors
 
-This API provides details of other devices in the network that are similar to the current device pre in terms of features , prodict familiy and hardware. Default sort is similarityScore
+List factors that contribute to an asset's crash risk score.
+
+### Example
+
+* OAuth Authentication (oAuth2):
+
+```python
+import time
+import pxcloud_api_client
+from pxcloud_api_client.api import crash_risk_api
+from pxcloud_api_client.model.device_risk_factors_response import DeviceRiskFactorsResponse
+from pxcloud_api_client.model.error_response import ErrorResponse
+from pprint import pprint
+# Defining the host is optional and defaults to https://api-cx.cisco.com/sandbox/px
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pxcloud_api_client.Configuration(
+    host = "https://api-cx.cisco.com/sandbox/px"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: oAuth2
+configuration = pxcloud_api_client.Configuration(
+    host = "https://api-cx.cisco.com/sandbox/px"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with pxcloud_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = crash_risk_api.CrashRiskApi(api_client)
+    success_track_id = "successTrackId_example" # str | 
+    customer_id = "customerId_example" # str | Unique identifier of the customer
+    asset_id_base64 = "assetIdBase64_example" # str | Base64 encoded value of the `assetId`.
+
+    # example passing only required values which don't have defaults set
+    try:
+        # List crash risk asset risk factors
+        api_response = api_instance.get_crash_risk_asset_risk_factors(success_track_id, customer_id, asset_id_base64)
+        pprint(api_response)
+    except pxcloud_api_client.ApiException as e:
+        print("Exception when calling CrashRiskApi->get_crash_risk_asset_risk_factors: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **success_track_id** | **str**|  |
+ **customer_id** | **str**| Unique identifier of the customer |
+ **asset_id_base64** | **str**| Base64 encoded value of the &#x60;assetId&#x60;. |
+
+### Return type
+
+[**DeviceRiskFactorsResponse**](DeviceRiskFactorsResponse.md)
+
+### Authorization
+
+[oAuth2](../README.md#oAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Ok |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**500** | Internal server error |  -  |
+**503** | Service Unavailable |  -  |
+**504** | Gateway timeout |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_crash_risk_asset_similar_assets**
+> SimilarDevices get_crash_risk_asset_similar_assets(customer_id, asset_id_base64, success_track_id, similarity_criteria)
+
+List crash risk asset similar assets
+
+List other devices in the network that are similar to a device in terms of features , product family, and hardware.
 
 ### Example
 
@@ -395,10 +207,10 @@ from pxcloud_api_client.api import crash_risk_api
 from pxcloud_api_client.model.similar_devices import SimilarDevices
 from pxcloud_api_client.model.error_response import ErrorResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api-cx.cisco.com/px
+# Defining the host is optional and defaults to https://api-cx.cisco.com/sandbox/px
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px"
+    host = "https://api-cx.cisco.com/sandbox/px"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -408,7 +220,7 @@ configuration = pxcloud_api_client.Configuration(
 
 # Configure OAuth2 access token for authorization: oAuth2
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px"
+    host = "https://api-cx.cisco.com/sandbox/px"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -416,29 +228,29 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with pxcloud_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = crash_risk_api.CrashRiskApi(api_client)
+    customer_id = "customerId_example" # str | Unique identifier of the customer
+    asset_id_base64 = "assetIdBase64_example" # str | Base64 encoded value of the `assetId`.
     success_track_id = "successTrackId_example" # str | 
-    customer_id = "customerId_example" # str | 
-    asset_id_base64 = "assetIdBase64_example" # str | base64 encoded value of the assetId
-    similarity_criteria = "similarityCriteria_example" # str | should be one of the following values features,fingerprint,softwares_features
-    offset = 1 # int |  (optional) if omitted the server will use the default value of 1
-    max = 10 # int |  (optional) if omitted the server will use the default value of 10
+    similarity_criteria = "features" # str | Criteria used to determine whether an asset is similar to the specified asset.
+    max = 10 # int | The maximum number of items to return. The default value is 10. (optional) if omitted the server will use the default value of 10
+    offset = 1 # int | The number of items to skip before starting to collect the result set. The default value is 1. (optional) if omitted the server will use the default value of 1
 
     # example passing only required values which don't have defaults set
     try:
-        # Get similar assets based on the similarity score
-        api_response = api_instance.similar_assets(success_track_id, customer_id, asset_id_base64, similarity_criteria)
+        # List crash risk asset similar assets
+        api_response = api_instance.get_crash_risk_asset_similar_assets(customer_id, asset_id_base64, success_track_id, similarity_criteria)
         pprint(api_response)
     except pxcloud_api_client.ApiException as e:
-        print("Exception when calling CrashRiskApi->similar_assets: %s\n" % e)
+        print("Exception when calling CrashRiskApi->get_crash_risk_asset_similar_assets: %s\n" % e)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Get similar assets based on the similarity score
-        api_response = api_instance.similar_assets(success_track_id, customer_id, asset_id_base64, similarity_criteria, offset=offset, max=max)
+        # List crash risk asset similar assets
+        api_response = api_instance.get_crash_risk_asset_similar_assets(customer_id, asset_id_base64, success_track_id, similarity_criteria, max=max, offset=offset)
         pprint(api_response)
     except pxcloud_api_client.ApiException as e:
-        print("Exception when calling CrashRiskApi->similar_assets: %s\n" % e)
+        print("Exception when calling CrashRiskApi->get_crash_risk_asset_similar_assets: %s\n" % e)
 ```
 
 
@@ -446,12 +258,12 @@ with pxcloud_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **customer_id** | **str**| Unique identifier of the customer |
+ **asset_id_base64** | **str**| Base64 encoded value of the &#x60;assetId&#x60;. |
  **success_track_id** | **str**|  |
- **customer_id** | **str**|  |
- **asset_id_base64** | **str**| base64 encoded value of the assetId |
- **similarity_criteria** | **str**| should be one of the following values features,fingerprint,softwares_features |
- **offset** | **int**|  | [optional] if omitted the server will use the default value of 1
- **max** | **int**|  | [optional] if omitted the server will use the default value of 10
+ **similarity_criteria** | **str**| Criteria used to determine whether an asset is similar to the specified asset. |
+ **max** | **int**| The maximum number of items to return. The default value is 10. | [optional] if omitted the server will use the default value of 10
+ **offset** | **int**| The number of items to skip before starting to collect the result set. The default value is 1. | [optional] if omitted the server will use the default value of 1
 
 ### Return type
 
@@ -471,11 +283,212 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Ok |  * Date -  <br>  |
-**400** | Bad Request |  * Date -  <br>  |
-**401** | Unauthorized |  * Date -  <br>  |
-**403** | Forbidden error |  * Date -  <br>  |
-**404** | Not Found |  * Date -  <br>  |
+**200** | Ok |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**500** | Internal server error |  -  |
+**503** | Service Unavailable |  -  |
+**504** | Gateway timeout |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_crash_risk_assets**
+> CrashRiskDevices get_crash_risk_assets(customer_id, success_track_id)
+
+List assets at risk of crashing
+
+List devices that have a probability of crash, including risk score rating (`High`, `Medium`, `Low`).
+
+### Example
+
+* OAuth Authentication (oAuth2):
+
+```python
+import time
+import pxcloud_api_client
+from pxcloud_api_client.api import crash_risk_api
+from pxcloud_api_client.model.crash_risk_devices import CrashRiskDevices
+from pxcloud_api_client.model.error_response import ErrorResponse
+from pprint import pprint
+# Defining the host is optional and defaults to https://api-cx.cisco.com/sandbox/px
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pxcloud_api_client.Configuration(
+    host = "https://api-cx.cisco.com/sandbox/px"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: oAuth2
+configuration = pxcloud_api_client.Configuration(
+    host = "https://api-cx.cisco.com/sandbox/px"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with pxcloud_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = crash_risk_api.CrashRiskApi(api_client)
+    customer_id = "customerId_example" # str | Unique identifier of the customer
+    success_track_id = "successTrackId_example" # str | 
+    max = 10 # int | The maximum number of items to return. The default value is 10. (optional) if omitted the server will use the default value of 10
+    offset = 1 # int | The number of items to skip before starting to collect the result set. The default value is 1. (optional) if omitted the server will use the default value of 1
+
+    # example passing only required values which don't have defaults set
+    try:
+        # List assets at risk of crashing
+        api_response = api_instance.get_crash_risk_assets(customer_id, success_track_id)
+        pprint(api_response)
+    except pxcloud_api_client.ApiException as e:
+        print("Exception when calling CrashRiskApi->get_crash_risk_assets: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # List assets at risk of crashing
+        api_response = api_instance.get_crash_risk_assets(customer_id, success_track_id, max=max, offset=offset)
+        pprint(api_response)
+    except pxcloud_api_client.ApiException as e:
+        print("Exception when calling CrashRiskApi->get_crash_risk_assets: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customer_id** | **str**| Unique identifier of the customer |
+ **success_track_id** | **str**|  |
+ **max** | **int**| The maximum number of items to return. The default value is 10. | [optional] if omitted the server will use the default value of 10
+ **offset** | **int**| The number of items to skip before starting to collect the result set. The default value is 1. | [optional] if omitted the server will use the default value of 1
+
+### Return type
+
+[**CrashRiskDevices**](CrashRiskDevices.md)
+
+### Authorization
+
+[oAuth2](../README.md#oAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**500** | Internal server error |  -  |
+**503** | Service Unavailable |  -  |
+**504** | Gateway timeout |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_crash_risk_assets_crashed**
+> InventoryCrashDetails list_crash_risk_assets_crashed(customer_id, success_track_id)
+
+List assets which have crashed
+
+### Example
+
+* OAuth Authentication (oAuth2):
+
+```python
+import time
+import pxcloud_api_client
+from pxcloud_api_client.api import crash_risk_api
+from pxcloud_api_client.model.error_response import ErrorResponse
+from pxcloud_api_client.model.inventory_crash_details import InventoryCrashDetails
+from pprint import pprint
+# Defining the host is optional and defaults to https://api-cx.cisco.com/sandbox/px
+# See configuration.py for a list of all supported configuration parameters.
+configuration = pxcloud_api_client.Configuration(
+    host = "https://api-cx.cisco.com/sandbox/px"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: oAuth2
+configuration = pxcloud_api_client.Configuration(
+    host = "https://api-cx.cisco.com/sandbox/px"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with pxcloud_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = crash_risk_api.CrashRiskApi(api_client)
+    customer_id = "customerId_example" # str | Unique identifier of the customer
+    success_track_id = "successTrackId_example" # str | 
+    time_period = 1 # int | Filter results by X number of days in the past - valid range 1-99. (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # List assets which have crashed
+        api_response = api_instance.list_crash_risk_assets_crashed(customer_id, success_track_id)
+        pprint(api_response)
+    except pxcloud_api_client.ApiException as e:
+        print("Exception when calling CrashRiskApi->list_crash_risk_assets_crashed: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # List assets which have crashed
+        api_response = api_instance.list_crash_risk_assets_crashed(customer_id, success_track_id, time_period=time_period)
+        pprint(api_response)
+    except pxcloud_api_client.ApiException as e:
+        print("Exception when calling CrashRiskApi->list_crash_risk_assets_crashed: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customer_id** | **str**| Unique identifier of the customer |
+ **success_track_id** | **str**|  |
+ **time_period** | **int**| Filter results by X number of days in the past - valid range 1-99. | [optional]
+
+### Return type
+
+[**InventoryCrashDetails**](InventoryCrashDetails.md)
+
+### Authorization
+
+[oAuth2](../README.md#oAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not found |  -  |
+**500** | Internal server error |  -  |
+**503** | Service Unavailable |  -  |
+**504** | Gateway timeout |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

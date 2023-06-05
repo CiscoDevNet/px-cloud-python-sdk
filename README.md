@@ -60,19 +60,13 @@ Please follow the [installation procedure](#installation--usage) and then run th
 import time
 import pxcloud_api_client
 from pprint import pprint
-from pxcloud_api_client.api import compliance_api
-from pxcloud_api_client.model.asset_violations_response import AssetViolationsResponse
-from pxcloud_api_client.model.assets_violations_response import AssetsViolationsResponse
-from pxcloud_api_client.model.assets_with_violations_response import AssetsWithViolationsResponse
+from pxcloud_api_client.api import cx_meta_data_api
 from pxcloud_api_client.model.error_response import ErrorResponse
-from pxcloud_api_client.model.opt_in_response import OptInResponse
-from pxcloud_api_client.model.policy_rule_details import PolicyRuleDetails
-from pxcloud_api_client.model.suggestions_response import SuggestionsResponse
-from pxcloud_api_client.model.violation_summary_response import ViolationSummaryResponse
-# Defining the host is optional and defaults to https://api-cx.cisco.com/px
+from pxcloud_api_client.model.success_tracks_response import SuccessTracksResponse
+# Defining the host is optional and defaults to https://api-cx.cisco.com/sandbox/px
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px"
+    host = "https://api-cx.cisco.com/sandbox/px"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -82,7 +76,7 @@ configuration = pxcloud_api_client.Configuration(
 
 # Configure OAuth2 access token for authorization: oAuth2
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px"
+    host = "https://api-cx.cisco.com/sandbox/px"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -90,20 +84,14 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 # Enter a context with an instance of the API client
 with pxcloud_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = compliance_api.ComplianceApi(api_client)
-    success_track_id = "successTrackId_example" # str | 
-    source_system_id = "sourceSystemId_example" # str | 
-    customer_id = "customerId_example" # str | 
-    asset_id = "assetId_example" # str | 
-    offset = 1 # int |  (optional) (default to 1)
-    max = 10 # int |  (optional) (default to 10)
+    api_instance = cx_meta_data_api.CXMetaDataApi(api_client)
 
     try:
-        # Get the violations of the asset
-        api_response = api_instance.asset_violations(success_track_id, source_system_id, customer_id, asset_id, offset=offset, max=max)
+        # List success tracks
+        api_response = api_instance.get_success_tracks()
         pprint(api_response)
     except pxcloud_api_client.ApiException as e:
-        print("Exception when calling ComplianceApi->asset_violations: %s\n" % e)
+        print("Exception when calling CXMetaDataApi->get_success_tracks: %s\n" % e)
 ```
 
 ## Auto Authentication
@@ -226,9 +214,12 @@ Class | Method | HTTP request | Description
  - [SoftwareGroupSecurityAdvisoriesResponse](docs/SoftwareGroupSecurityAdvisoriesResponse.md)
  - [SoftwareGroupSuggestions](docs/SoftwareGroupSuggestions.md)
  - [SolutionMapping](docs/SolutionMapping.md)
+ - [SuccessTrack](docs/SuccessTrack.md)
  - [SuccessTrackChecklistMapping](docs/SuccessTrackChecklistMapping.md)
  - [SuccessTrackMapping](docs/SuccessTrackMapping.md)
+ - [SuccessTrackUsecasesInner](docs/SuccessTrackUsecasesInner.md)
  - [SuccessTracks](docs/SuccessTracks.md)
+ - [SuccessTracksResponse](docs/SuccessTracksResponse.md)
  - [Suggestion](docs/Suggestion.md)
  - [SuggestionSummary](docs/SuggestionSummary.md)
  - [SuggestionSummaryAdvisoriesSeverity](docs/SuggestionSummaryAdvisoriesSeverity.md)
