@@ -19,7 +19,98 @@ More info: [PX Cloud API](https://developer.cisco.com/docs/px-cloud)
 
 ## Requirements.
 
-Python >=3.6
+Python &gt;&#x3D;3.7
+
+## Migration from other generators like python and python-legacy
+
+### Changes
+1. This generator uses spec case for all (object) property names and parameter names.
+    - So if the spec has a property name like camelCase, it will use camelCase rather than camel_case
+    - So you will need to update how you input and read properties to use spec case
+2. Endpoint parameters are stored in dictionaries to prevent collisions (explanation below)
+    - So you will need to update how you pass data in to endpoints
+3. Endpoint responses now include the original response, the deserialized response body, and (todo)the deserialized headers
+    - So you will need to update your code to use response.body to access deserialized data
+4. All validated data is instantiated in an instance that subclasses all validated Schema classes and Decimal/str/list/tuple/frozendict/NoneClass/BoolClass/bytes/io.FileIO
+    - This means that you can use isinstance to check if a payload validated against a schema class
+    - This means that no data will be of type None/True/False
+        - ingested None will subclass NoneClass
+        - ingested True will subclass BoolClass
+        - ingested False will subclass BoolClass
+        - So if you need to check is True/False/None, instead use instance.is_true_oapg()/.is_false_oapg()/.is_none_oapg()
+5. All validated class instances are immutable except for ones based on io.File
+    - This is because if properties were changed after validation, that validation would no longer apply
+    - So no changing values or property values after a class has been instantiated
+6. String + Number types with formats
+    - String type data is stored as a string and if you need to access types based on its format like date,
+    date-time, uuid, number etc then you will need to use accessor functions on the instance
+    - type string + format: See .as_date_oapg, .as_datetime_oapg, .as_decimal_oapg, .as_uuid_oapg
+    - type number + format: See .as_float_oapg, .as_int_oapg
+    - this was done because openapi/json-schema defines constraints. string data may be type string with no format
+    keyword in one schema, and include a format constraint in another schema
+    - So if you need to access a string format based type, use as_date_oapg/as_datetime_oapg/as_decimal_oapg/as_uuid_oapg
+    - So if you need to access a number format based type, use as_int_oapg/as_float_oapg
+7. Property access on AnyType(type unset) or object(dict) schemas
+    - Only required keys with valid python names are properties like .someProp and have type hints
+    - All optional keys may not exist, so properties are not defined for them
+    - One can access optional values with dict_instance['optionalProp'] and KeyError will be raised if it does not exist
+    - Use get_item_oapg if you need a way to always get a value whether or not the key exists
+        - If the key does not exist, schemas.unset is returned from calling dict_instance.get_item_oapg('optionalProp')
+        - All required and optional keys have type hints for this method, and @typing.overload is used
+        - A type hint is also generated for additionalProperties accessed using this method
+    - So you will need to update you code to use some_instance['optionalProp'] to access optional property
+    and additionalProperty values
+8. The location of the api classes has changed
+    - Api classes are located in your_package.apis.tags.some_api
+    - This change was made to eliminate redundant code generation
+    - Legacy generators generated the same endpoint twice if it had > 1 tag on it
+    - This generator defines an endpoint in one class, then inherits that class to generate
+      apis by tags and by paths
+    - This change reduces code and allows quicker run time if you use the path apis
+        - path apis are at your_package.apis.paths.some_path
+    - Those apis will only load their needed models, which is less to load than all of the resources needed in a tag api
+    - So you will need to update your import paths to the api classes
+
+### Why are Oapg and _oapg used in class and method names?
+Classes can have arbitrarily named properties set on them
+Endpoints can have arbitrary operationId method names set
+For those reasons, I use the prefix Oapg and _oapg to greatly reduce the likelihood of collisions
+on protected + public classes/methods.
+oapg stands for OpenApi Python Generator.
+
+### Object property spec case
+This was done because when payloads are ingested, they can be validated against N number of schemas.
+If the input signature used a different property name then that has mutated the payload.
+So SchemaA and SchemaB must both see the camelCase spec named variable.
+Also it is possible to send in two properties, named camelCase and camel_case in the same payload.
+That use case should be support so spec case is used.
+
+### Parameter spec case
+Parameters can be included in different locations including:
+- query
+- path
+- header
+- cookie
+
+Any of those parameters could use the same parameter names, so if every parameter
+was included as an endpoint parameter in a function signature, they would collide.
+For that reason, each of those inputs have been separated out into separate typed dictionaries:
+- query_params
+- path_params
+- header_params
+- cookie_params
+
+So when updating your code, you will need to pass endpoint parameters in using those
+dictionaries.
+
+### Endpoint responses
+Endpoint responses have been enriched to now include more information.
+Any response reom an endpoint will now include the following properties:
+response: urllib3.HTTPResponse
+body: typing.Union[Unset, Schema]
+headers: typing.Union[Unset, TODO]
+Note: response header deserialization has not yet been added
+
 
 ## Installation & Usage
 ### pip install
@@ -60,19 +151,13 @@ Please follow the [installation procedure](#installation--usage) and then run th
 import time
 import pxcloud_api_client
 from pprint import pprint
-from pxcloud_api_client.api import compliance_api
-from pxcloud_api_client.model.asset_violations_response import AssetViolationsResponse
-from pxcloud_api_client.model.assets_violations_response import AssetsViolationsResponse
-from pxcloud_api_client.model.assets_with_violations_response import AssetsWithViolationsResponse
-from pxcloud_api_client.model.error_response import ErrorResponse
-from pxcloud_api_client.model.opt_in_response import OptInResponse
-from pxcloud_api_client.model.policy_rule_details import PolicyRuleDetails
-from pxcloud_api_client.model.suggestions_response import SuggestionsResponse
-from pxcloud_api_client.model.violation_summary_response import ViolationSummaryResponse
-# Defining the host is optional and defaults to https://api-cx.cisco.com/px
+from pxcloud_api_client.apis.tags import cx_meta_data_api
+from pxcloud_api_client.pxcloud_api_client.error_response import ErrorResponse
+from pxcloud_api_client.pxcloud_api_client.success_tracks_response import SuccessTracksResponse
+# Defining the host is optional and defaults to https://api-cx.cisco.com/sandbox/px
 # See configuration.py for a list of all supported configuration parameters.
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px"
+    host = "https://api-cx.cisco.com/sandbox/px"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -82,28 +167,21 @@ configuration = pxcloud_api_client.Configuration(
 
 # Configure OAuth2 access token for authorization: oAuth2
 configuration = pxcloud_api_client.Configuration(
-    host = "https://api-cx.cisco.com/px"
+    host = "https://api-cx.cisco.com/sandbox/px",
+    access_token = 'YOUR_ACCESS_TOKEN'
 )
-configuration.access_token = 'YOUR_ACCESS_TOKEN'
-
 
 # Enter a context with an instance of the API client
 with pxcloud_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = compliance_api.ComplianceApi(api_client)
-    success_track_id = "successTrackId_example" # str | 
-    source_system_id = "sourceSystemId_example" # str | 
-    customer_id = "customerId_example" # str | 
-    asset_id = "assetId_example" # str | 
-    offset = 1 # int |  (optional) (default to 1)
-    max = 10 # int |  (optional) (default to 10)
-
+    api_instance = cx_meta_data_api.CXMetaDataApi(api_client)
+    
     try:
-        # Get the violations of the asset
-        api_response = api_instance.asset_violations(success_track_id, source_system_id, customer_id, asset_id, offset=offset, max=max)
+        # List success tracks
+        api_response = api_instance.get_success_tracks()
         pprint(api_response)
     except pxcloud_api_client.ApiException as e:
-        print("Exception when calling ComplianceApi->asset_violations: %s\n" % e)
+        print("Exception when calling CXMetaDataApi->get_success_tracks: %s\n" % e)
 ```
 
 ## Auto Authentication
@@ -154,106 +232,100 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [AccSessionAttendees](docs/AccSessionAttendees.md)
- - [AffectedAssets](docs/AffectedAssets.md)
- - [AffectedAssetsResponse](docs/AffectedAssetsResponse.md)
- - [Asset](docs/Asset.md)
- - [AssetError](docs/AssetError.md)
- - [AssetResponse](docs/AssetResponse.md)
- - [AssetSession](docs/AssetSession.md)
- - [AssetViolation](docs/AssetViolation.md)
- - [AssetViolationsResponse](docs/AssetViolationsResponse.md)
- - [AssetsFaultHistory](docs/AssetsFaultHistory.md)
- - [AssetsFaultHistoryResponse](docs/AssetsFaultHistoryResponse.md)
- - [AssetsViolations](docs/AssetsViolations.md)
- - [AssetsViolationsResponse](docs/AssetsViolationsResponse.md)
- - [AssetsWithViolations](docs/AssetsWithViolations.md)
- - [AssetsWithViolationsResponse](docs/AssetsWithViolationsResponse.md)
- - [Contract](docs/Contract.md)
- - [ContractDetails](docs/ContractDetails.md)
- - [ContractDetailsResponse](docs/ContractDetailsResponse.md)
- - [ContractDetailsV2Response](docs/ContractDetailsV2Response.md)
- - [ContractResponse](docs/ContractResponse.md)
- - [ContractV2](docs/ContractV2.md)
- - [ContractV2Details](docs/ContractV2Details.md)
- - [ContractsV2Response](docs/ContractsV2Response.md)
- - [Crash](docs/Crash.md)
- - [CrashRiskDevice](docs/CrashRiskDevice.md)
- - [CrashRiskDevices](docs/CrashRiskDevices.md)
- - [Customer](docs/Customer.md)
- - [CustomerDetails](docs/CustomerDetails.md)
- - [CustomerInfo](docs/CustomerInfo.md)
- - [CustomerResponse](docs/CustomerResponse.md)
- - [DeviceCrashDetail](docs/DeviceCrashDetail.md)
- - [DeviceDetail](docs/DeviceDetail.md)
- - [DeviceRiskFactors](docs/DeviceRiskFactors.md)
- - [DeviceRiskFactorsResponse](docs/DeviceRiskFactorsResponse.md)
- - [ErrorResponse](docs/ErrorResponse.md)
- - [Faults](docs/Faults.md)
- - [FaultsResponse](docs/FaultsResponse.md)
- - [FaultsSummary](docs/FaultsSummary.md)
- - [FaultsSummaryResponse](docs/FaultsSummaryResponse.md)
- - [InventoryCrashDetails](docs/InventoryCrashDetails.md)
- - [OptInResponse](docs/OptInResponse.md)
- - [Pagination](docs/Pagination.md)
- - [PartnerAsset](docs/PartnerAsset.md)
- - [PartnerAssetResponse](docs/PartnerAssetResponse.md)
- - [PartnerOffer](docs/PartnerOffer.md)
- - [PartnerOfferAttendee](docs/PartnerOfferAttendee.md)
- - [PartnerOfferSession](docs/PartnerOfferSession.md)
- - [PartnerOfferWithSessions](docs/PartnerOfferWithSessions.md)
- - [PartnerOffersInfo](docs/PartnerOffersInfo.md)
- - [PolicyRuleDetails](docs/PolicyRuleDetails.md)
- - [RacetrackBuid](docs/RacetrackBuid.md)
- - [RacetrackBuidPitstop](docs/RacetrackBuidPitstop.md)
- - [RacetrackBuidPitstopAction](docs/RacetrackBuidPitstopAction.md)
- - [RacetrackBuidSolution](docs/RacetrackBuidSolution.md)
- - [RacetrackTooltip](docs/RacetrackTooltip.md)
- - [RacetrackUsecase](docs/RacetrackUsecase.md)
- - [ReleaseSummary](docs/ReleaseSummary.md)
- - [Report](docs/Report.md)
- - [ReportStatus](docs/ReportStatus.md)
- - [SimilarDeviceData](docs/SimilarDeviceData.md)
- - [SimilarDevices](docs/SimilarDevices.md)
- - [SoftwareGroup](docs/SoftwareGroup.md)
- - [SoftwareGroupBugs](docs/SoftwareGroupBugs.md)
- - [SoftwareGroupBugsResponse](docs/SoftwareGroupBugsResponse.md)
- - [SoftwareGroupFieldNotices](docs/SoftwareGroupFieldNotices.md)
- - [SoftwareGroupFieldNoticesResponse](docs/SoftwareGroupFieldNoticesResponse.md)
- - [SoftwareGroupResponse](docs/SoftwareGroupResponse.md)
- - [SoftwareGroupRisk](docs/SoftwareGroupRisk.md)
- - [SoftwareGroupSecurityAdvisories](docs/SoftwareGroupSecurityAdvisories.md)
- - [SoftwareGroupSecurityAdvisoriesResponse](docs/SoftwareGroupSecurityAdvisoriesResponse.md)
- - [SoftwareGroupSuggestions](docs/SoftwareGroupSuggestions.md)
- - [SolutionMapping](docs/SolutionMapping.md)
- - [SuccessTrackChecklistMapping](docs/SuccessTrackChecklistMapping.md)
- - [SuccessTrackMapping](docs/SuccessTrackMapping.md)
- - [SuccessTracks](docs/SuccessTracks.md)
- - [Suggestion](docs/Suggestion.md)
- - [SuggestionSummary](docs/SuggestionSummary.md)
- - [SuggestionSummaryAdvisoriesSeverity](docs/SuggestionSummaryAdvisoriesSeverity.md)
- - [SuggestionSummaryAdvisoriesSeverityExposed](docs/SuggestionSummaryAdvisoriesSeverityExposed.md)
- - [SuggestionSummaryAdvisoriesSeverityFixed](docs/SuggestionSummaryAdvisoriesSeverityFixed.md)
- - [SuggestionSummaryAdvisoriesSeverityNewExposed](docs/SuggestionSummaryAdvisoriesSeverityNewExposed.md)
- - [SuggestionSummaryBugSeverity](docs/SuggestionSummaryBugSeverity.md)
- - [SuggestionSummaryBugSeverityExposed](docs/SuggestionSummaryBugSeverityExposed.md)
- - [SuggestionSummaryBugSeverityFixed](docs/SuggestionSummaryBugSeverityFixed.md)
- - [SuggestionSummaryBugSeverityNewExposed](docs/SuggestionSummaryBugSeverityNewExposed.md)
- - [SuggestionSummaryFeaturesCount](docs/SuggestionSummaryFeaturesCount.md)
- - [SuggestionSummaryFieldNoticeSeverity](docs/SuggestionSummaryFieldNoticeSeverity.md)
- - [SuggestionSummaryFieldNoticeSeverityExposed](docs/SuggestionSummaryFieldNoticeSeverityExposed.md)
- - [SuggestionSummaryFieldNoticeSeverityFixed](docs/SuggestionSummaryFieldNoticeSeverityFixed.md)
- - [SuggestionSummaryFieldNoticeSeverityNewExposed](docs/SuggestionSummaryFieldNoticeSeverityNewExposed.md)
- - [SuggestionsResponse](docs/SuggestionsResponse.md)
- - [ViolationSummary](docs/ViolationSummary.md)
- - [ViolationSummaryResponse](docs/ViolationSummaryResponse.md)
-
+ - [AccSessionAttendees](docs/models/AccSessionAttendees.md)
+ - [AffectedAssets](docs/models/AffectedAssets.md)
+ - [AffectedAssetsResponse](docs/models/AffectedAssetsResponse.md)
+ - [Asset](docs/models/Asset.md)
+ - [AssetError](docs/models/AssetError.md)
+ - [AssetResponse](docs/models/AssetResponse.md)
+ - [AssetSession](docs/models/AssetSession.md)
+ - [AssetViolation](docs/models/AssetViolation.md)
+ - [AssetViolationsResponse](docs/models/AssetViolationsResponse.md)
+ - [AssetsFaultHistory](docs/models/AssetsFaultHistory.md)
+ - [AssetsFaultHistoryResponse](docs/models/AssetsFaultHistoryResponse.md)
+ - [AssetsViolations](docs/models/AssetsViolations.md)
+ - [AssetsViolationsResponse](docs/models/AssetsViolationsResponse.md)
+ - [AssetsWithViolations](docs/models/AssetsWithViolations.md)
+ - [AssetsWithViolationsResponse](docs/models/AssetsWithViolationsResponse.md)
+ - [Contract](docs/models/Contract.md)
+ - [ContractDetails](docs/models/ContractDetails.md)
+ - [ContractDetailsResponse](docs/models/ContractDetailsResponse.md)
+ - [ContractDetailsV2Response](docs/models/ContractDetailsV2Response.md)
+ - [ContractResponse](docs/models/ContractResponse.md)
+ - [ContractV2](docs/models/ContractV2.md)
+ - [ContractV2Details](docs/models/ContractV2Details.md)
+ - [ContractsV2Response](docs/models/ContractsV2Response.md)
+ - [Crash](docs/models/Crash.md)
+ - [CrashRiskDevice](docs/models/CrashRiskDevice.md)
+ - [CrashRiskDevices](docs/models/CrashRiskDevices.md)
+ - [Customer](docs/models/Customer.md)
+ - [CustomerDetails](docs/models/CustomerDetails.md)
+ - [CustomerInfo](docs/models/CustomerInfo.md)
+ - [CustomerResponse](docs/models/CustomerResponse.md)
+ - [DeviceCrashDetail](docs/models/DeviceCrashDetail.md)
+ - [DeviceDetail](docs/models/DeviceDetail.md)
+ - [DeviceRiskFactors](docs/models/DeviceRiskFactors.md)
+ - [DeviceRiskFactorsResponse](docs/models/DeviceRiskFactorsResponse.md)
+ - [ErrorResponse](docs/models/ErrorResponse.md)
+ - [Faults](docs/models/Faults.md)
+ - [FaultsResponse](docs/models/FaultsResponse.md)
+ - [FaultsSummary](docs/models/FaultsSummary.md)
+ - [FaultsSummaryResponse](docs/models/FaultsSummaryResponse.md)
+ - [InventoryCrashDetails](docs/models/InventoryCrashDetails.md)
+ - [OptInResponse](docs/models/OptInResponse.md)
+ - [Pagination](docs/models/Pagination.md)
+ - [PartnerAsset](docs/models/PartnerAsset.md)
+ - [PartnerAssetResponse](docs/models/PartnerAssetResponse.md)
+ - [PartnerOffer](docs/models/PartnerOffer.md)
+ - [PartnerOfferAttendee](docs/models/PartnerOfferAttendee.md)
+ - [PartnerOfferSession](docs/models/PartnerOfferSession.md)
+ - [PartnerOfferWithSessions](docs/models/PartnerOfferWithSessions.md)
+ - [PartnerOffersInfo](docs/models/PartnerOffersInfo.md)
+ - [PolicyRuleDetails](docs/models/PolicyRuleDetails.md)
+ - [RacetrackBuid](docs/models/RacetrackBuid.md)
+ - [RacetrackBuidPitstop](docs/models/RacetrackBuidPitstop.md)
+ - [RacetrackBuidPitstopAction](docs/models/RacetrackBuidPitstopAction.md)
+ - [RacetrackBuidSolution](docs/models/RacetrackBuidSolution.md)
+ - [RacetrackTooltip](docs/models/RacetrackTooltip.md)
+ - [RacetrackUsecase](docs/models/RacetrackUsecase.md)
+ - [ReleaseSummary](docs/models/ReleaseSummary.md)
+ - [Report](docs/models/Report.md)
+ - [ReportStatus](docs/models/ReportStatus.md)
+ - [SimilarDeviceData](docs/models/SimilarDeviceData.md)
+ - [SimilarDevices](docs/models/SimilarDevices.md)
+ - [SoftwareGroup](docs/models/SoftwareGroup.md)
+ - [SoftwareGroupBugs](docs/models/SoftwareGroupBugs.md)
+ - [SoftwareGroupBugsResponse](docs/models/SoftwareGroupBugsResponse.md)
+ - [SoftwareGroupFieldNotices](docs/models/SoftwareGroupFieldNotices.md)
+ - [SoftwareGroupFieldNoticesResponse](docs/models/SoftwareGroupFieldNoticesResponse.md)
+ - [SoftwareGroupResponse](docs/models/SoftwareGroupResponse.md)
+ - [SoftwareGroupRisk](docs/models/SoftwareGroupRisk.md)
+ - [SoftwareGroupSecurityAdvisories](docs/models/SoftwareGroupSecurityAdvisories.md)
+ - [SoftwareGroupSecurityAdvisoriesResponse](docs/models/SoftwareGroupSecurityAdvisoriesResponse.md)
+ - [SoftwareGroupSuggestions](docs/models/SoftwareGroupSuggestions.md)
+ - [SolutionMapping](docs/models/SolutionMapping.md)
+ - [SuccessTrack](docs/models/SuccessTrack.md)
+ - [SuccessTrackChecklistMapping](docs/models/SuccessTrackChecklistMapping.md)
+ - [SuccessTrackMapping](docs/models/SuccessTrackMapping.md)
+ - [SuccessTracks](docs/models/SuccessTracks.md)
+ - [SuccessTracksResponse](docs/models/SuccessTracksResponse.md)
+ - [Suggestion](docs/models/Suggestion.md)
+ - [SuggestionSummary](docs/models/SuggestionSummary.md)
+ - [SuggestionsResponse](docs/models/SuggestionsResponse.md)
+ - [ViolationSummary](docs/models/ViolationSummary.md)
+ - [ViolationSummaryResponse](docs/models/ViolationSummaryResponse.md)
 
 ## Documentation For Authorization
 
-The access token authentication request is based on the OAuth client credentials grant flow, which is a single HTTP transaction, not requiring user interaction to complete.
+### oAuth2
 
-More info: [Authentication for PX Cloud API](https://developer.cisco.com/docs/px-cloud/#!authentication/)
+- **Type**: OAuth
+- **Flow**: application
+- **Authorization URL**: 
+- **Scopes**: 
+ - **api.authz.iam.manage**: Production
+ - **api.customer.assets.manage**: Sandbox
+
 
 ## FAQs and Troubleshooting
 
@@ -265,10 +337,10 @@ RecursionError indicating the maximum recursion limit has been exceeded. In that
 
 Solution 1:
 Use specific imports for apis and models like:
-- `from pxcloud_api_client.api.default_api import DefaultApi`
-- `from pxcloud_api_client.model.pet import Pet`
+- `from pxcloud_api_client.apis.default_api import DefaultApi`
+- `from pxcloud_api_client.pxcloud_api_client.pet import Pet`
 
-Solution 2:
+Solution 1:
 Before importing the package, adjust the maximum recursion limit as shown below:
 ```
 import sys
@@ -277,4 +349,3 @@ import pxcloud_api_client
 from pxcloud_api_client.apis import *
 from pxcloud_api_client.models import *
 ```
-
